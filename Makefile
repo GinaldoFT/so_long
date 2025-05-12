@@ -3,9 +3,9 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-INCLUDES = -Iincludes -Ilib/libft -Ilib/ft_printf/include -Ilib/mlx
+INCLUDES = -Iincludes -Ilibs/libft -Ilibs/ft_printf/include -Ilibs/mlx
 SRC_DIR = srcs
-LIB_DIR = lib
+LIB_DIR = libs
 
 LIBFT_DIR = $(LIB_DIR)/libft
 PRINTF_DIR = $(LIB_DIR)/ft_printf
