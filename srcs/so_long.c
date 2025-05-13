@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/13 17:51:39 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:23:55 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ void	draw_map(t_vars *vars)
 		{
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor,
 					x * TILE_SIZE, y * TILE_SIZE);
+			if (mapa[y][x] == 'P')
+			{
+				vars->x += x * TILE_SIZE;
+				vars->y += y * TILE_SIZE;
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_player,
+					x * TILE_SIZE, y * TILE_SIZE);
+			}	
 			if (mapa[y][x] == '1')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall,
 					x * TILE_SIZE, y * TILE_SIZE);	
@@ -98,8 +105,6 @@ int	main(int ac, char *av[])
 	int	fd;
 	t_vars vars;
 
-	vars.x = 32;
-	vars.y = 32;
 	if (ac != 2)
 	{
 		ft_putstr_fd("Error: Muitos Argumentos", 2);
@@ -111,7 +116,7 @@ int	main(int ac, char *av[])
 	vars.map_x *= TILE_SIZE;
 	vars.map_y = TILE_SIZE * ft_strlen(vars.map[0]);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, vars.map_y, vars.map_x - 32, "so_long");
+	vars.win = mlx_new_window(vars.mlx, vars.map_y - 32, vars.map_x - 32, "so_long");
 
 	load_imgs(&vars);
 	draw_map(&vars);
