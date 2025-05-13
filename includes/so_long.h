@@ -5,6 +5,7 @@
 # include "mlx.h"
 # include "ft_printf.h"
 # include <stdio.h>
+#include <fcntl.h>
 
 # define STEP 32
 # define ESC 65307
@@ -27,6 +28,7 @@ typedef struct	s_vars
 	int	img_height;
 	int	x;
 	int	y;
+	char	**map;
 } t_vars;
 
 int	key_hook(int keycode, t_vars *vars);
