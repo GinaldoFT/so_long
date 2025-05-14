@@ -6,33 +6,51 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/13 17:51:41 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:45:35 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	draw_tile(t_vars *vars, int x, int y)
+{
+	char	tile;
+
+	tile = vars->map[y / TILE_SIZE][x / TILE_SIZE];
+	if (tile == '0')
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
+	else if (tile == 'C')
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_coin, x, y);
+	else if (tile == 'E')
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_exit, x, y);
+}
+
+
 int	key_hook(int keycode, t_vars *vars)
 {
-	int	old_x;
-	int	old_y;
+	int	new_y;
+	int	new_x;
 
-	old_x = vars->x;
-	old_y = vars->y;
+	new_x = vars->x;
+	new_y = vars->y;
 	if (keycode == ESC)
 		exit(0);
 	if (keycode == W || keycode == 65362)
-		vars->y -= TILE_SIZE;
+		new_y -= TILE_SIZE;
 	if (keycode == S || keycode == 65364)
-		vars->y += TILE_SIZE;
+		new_y += TILE_SIZE;
 	if (keycode == A || keycode == 65361)
-		vars->x -= TILE_SIZE;
+		new_x -= TILE_SIZE;
 	if (keycode == D || keycode == 65363)
-		vars->x += TILE_SIZE;
-		
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img_player, vars->x, vars->y);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor,
-		old_x, old_y);
+		new_x += TILE_SIZE;
+
+	if (vars->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
+	{
+		draw_tile(vars, vars->x, vars->y);
+		vars->x = new_x;
+		vars->y = new_y;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_p, vars->x, vars->y);
+	}
 
 	return (0);
 }
