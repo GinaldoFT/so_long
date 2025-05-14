@@ -4,32 +4,30 @@ void	draw_map(t_vars *vars)
 {
 	int		y;
 	int		x;
-	char	**mapa;
-
-	mapa = vars->map;
+	
 	y = 0;
-	while (mapa[y])
+	while (vars->map[y])
 	{
 		x = 0;
-		while (mapa[y][x])
+		while (vars->map[y][x])
 		{
-			if (mapa[y][x] == 'P')
+			if (vars->map[y][x] == 'P')
 			{
 				vars->x = x * TILE_SIZE;
 				vars->y = y * TILE_SIZE;
                 mlx_put_image_to_window(vars->mlx, vars->win, vars->img_p,
                     x * TILE_SIZE, y * TILE_SIZE);
 			}
-			if (mapa[y][x] == '1')
+			if (vars->map[y][x] == '1')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall,
 					x * TILE_SIZE, y * TILE_SIZE);	
-			else if (mapa[y][x] == 'C')
+			else if (vars->map[y][x] == 'C')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_coin,
 					x * TILE_SIZE, y * TILE_SIZE);
-			else if (mapa[y][x] == 'E')
+			else if (vars->map[y][x] == 'E')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_exit,
 					x * TILE_SIZE, y * TILE_SIZE);
-			if (mapa[y][x] == '0')
+			if (vars->map[y][x] == '0')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor,
 					x * TILE_SIZE, y * TILE_SIZE);
 			x++;

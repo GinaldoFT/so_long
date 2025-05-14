@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/14 11:45:35 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:56:49 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	draw_tile(t_vars *vars, int x, int y)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_coin, x, y);
 	else if (tile == 'E')
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_exit, x, y);
+	else if (tile == 'P')
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
 }
 
 
