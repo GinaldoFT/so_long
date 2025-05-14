@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/14 11:45:37 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:05:31 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ typedef struct	s_vars
 	int		map_y;
 } t_vars;
 
-int		key_hook(int keycode, t_vars *vars);
-void	draw_map(t_vars *vars);
-void	ft_windown_size(t_vars *vars);
-void	load_imgs(t_vars *vars);
-void	create_map(int fd, t_vars *vars);
+int				key_hook(int keycode, t_vars *vars);
+void			draw_map(t_vars *vars);
+void			ft_windown_size(t_vars *vars);
+void			load_imgs(t_vars *vars);
+void			create_map(int fd, t_vars *vars);
+unsigned int	get_pixel_color(void *img, int x, int y);
+void			draw_trans_img(t_vars *vars, void *img, int posx, int posy);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/14 11:56:49 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:14:27 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void	draw_tile(t_vars *vars, int x, int y)
 	if (tile == '0')
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
 	else if (tile == 'C')
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_coin, x, y);
+		draw_trans_img(vars, vars->img_floor, x, y);
 	else if (tile == 'E')
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_exit, x, y);
+	{
+		draw_trans_img(vars, vars->img_floor, x, y);
+		draw_trans_img(vars, vars->img_exit, x, y);
+	}
 	else if (tile == 'P')
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
 }
@@ -51,7 +54,7 @@ int	key_hook(int keycode, t_vars *vars)
 		draw_tile(vars, vars->x, vars->y);
 		vars->x = new_x;
 		vars->y = new_y;
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_p, vars->x, vars->y);
+		draw_trans_img(vars, vars->img_p, vars->x, vars->y);
 	}
 
 	return (0);

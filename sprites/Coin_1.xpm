@@ -137,7 +137,7 @@ static char *result[] = {
 "d. c #FDF9F7",
 "f. c #FEFDF6",
 "g. c #FEFFFF",
-"h. c #000000",
+"h. c #00FF00",
 /* pixels */
 "h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.",
 "h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.h.",
