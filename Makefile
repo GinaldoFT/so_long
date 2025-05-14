@@ -23,7 +23,7 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(OBJS)
+$(NAME): $(LIBFT) $(PRINTF) $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBFT) $(PRINTF) $(MLX)
 
 $(LIBFT):
@@ -32,17 +32,22 @@ $(LIBFT):
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+
 clean:
 	rm -f $(OBJS)
 	$(MAKE) clean -C $(LIBFT_DIR)
 	$(MAKE) clean -C $(PRINTF_DIR)
+	$(MAKE) clean -C $(MLX_DIR)
+
 
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) fclean -C $(LIBFT_DIR)
 	$(MAKE) fclean -C $(PRINTF_DIR)
+	$(MAKE) clean -C $(MLX_DIR)
 
 re: fclean all
 
 .PHONY: all clean fclean re
-
