@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/14 16:14:27 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/17 13:27:12 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	key_hook(int keycode, t_vars *vars)
 	new_x = vars->x;
 	new_y = vars->y;
 	if (keycode == ESC)
-		exit(0);
+		ft_close(vars);
 	if (keycode == W || keycode == 65362)
 		new_y -= TILE_SIZE;
 	if (keycode == S || keycode == 65364)
@@ -55,6 +55,8 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->x = new_x;
 		vars->y = new_y;
 		draw_trans_img(vars, vars->img_p, vars->x, vars->y);
+		vars->moves++;
+		ft_printf("Moves: %i\n", vars->moves);
 	}
 
 	return (0);

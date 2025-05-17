@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/14 16:05:31 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/17 13:25:17 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # define D 100
 # define TILE_SIZE 32
 # define PLAYER "sprites/player.xpm"
+# define FLOOR "sprites/floor.xpm"
+# define WALL "sprites/wall.xpm"
+# define COIN "sprites/Coin_1.xpm"
+# define EXIT "sprites/exit.xpm"
 
 typedef struct	s_vars
 {
@@ -44,6 +48,7 @@ typedef struct	s_vars
 	char	**map;
 	int		map_x;
 	int		map_y;
+	int		moves;
 } t_vars;
 
 int				key_hook(int keycode, t_vars *vars);
@@ -53,5 +58,7 @@ void			load_imgs(t_vars *vars);
 void			create_map(int fd, t_vars *vars);
 unsigned int	get_pixel_color(void *img, int x, int y);
 void			draw_trans_img(t_vars *vars, void *img, int posx, int posy);
+int				rule_map(t_vars *vars);
+int				ft_close(t_vars *vars);
 
 #endif

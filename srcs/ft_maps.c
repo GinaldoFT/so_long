@@ -60,6 +60,7 @@ void	create_map(int fd, t_vars *vars)
 		free(buffer);
 		tmp = maps;
 		maps = ft_strjoin(tmp, "!");
+		free(tmp);
 	}
 	if (maps)
 	{
@@ -67,6 +68,11 @@ void	create_map(int fd, t_vars *vars)
 		free(maps);
 	}
 	ft_windown_size(vars);
+	if (rule_map(vars) == 1)
+	{
+		ft_printf("erro\n");
+		ft_close(vars);
+	}
 }
 
 void	load_imgs(t_vars *vars)
@@ -103,6 +109,6 @@ void ft_windown_size(t_vars *vars)
 		i++;
 	while (vars->map[0][j])
 		j++;
-	vars->map_x = j * TILE_SIZE;
+	vars->map_x = (j * TILE_SIZE) - 32;
 	vars->map_y = i * TILE_SIZE;
 }
