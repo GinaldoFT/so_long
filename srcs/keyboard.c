@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/17 13:27:12 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 09:23:08 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_tile(t_vars *vars, int x, int y)
 }
 
 
-int	key_hook(int keycode, t_vars *vars)
+int	ft_key_hook(int keycode, t_vars *vars)
 {
 	int	new_y;
 	int	new_x;
@@ -56,7 +56,7 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->y = new_y;
 		draw_trans_img(vars, vars->img_p, vars->x, vars->y);
 		vars->moves++;
-		ft_printf("Moves: %i\n", vars->moves);
+	//	ft_printf("Moves: %i\n", vars->moves);
 	}
 
 	return (0);

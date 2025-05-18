@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/17 13:25:17 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 09:55:20 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define COIN "sprites/Coin_1.xpm"
 # define EXIT "sprites/exit.xpm"
 
-typedef struct	s_vars
+typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
@@ -49,9 +49,20 @@ typedef struct	s_vars
 	int		map_x;
 	int		map_y;
 	int		moves;
-} t_vars;
+}	t_vars;
 
-int				key_hook(int keycode, t_vars *vars);
+typedef struct s_rules
+{
+	int i;
+    int end;
+    int last;
+    int j;
+    int l;
+	size_t	len;
+}	t_rules;
+
+
+int				ft_key_hook(int keycode, t_vars *vars);
 void			draw_map(t_vars *vars);
 void			ft_windown_size(t_vars *vars);
 void			load_imgs(t_vars *vars);
@@ -60,5 +71,6 @@ unsigned int	get_pixel_color(void *img, int x, int y);
 void			draw_trans_img(t_vars *vars, void *img, int posx, int posy);
 int				rule_map(t_vars *vars);
 int				ft_close(t_vars *vars);
+void			*free_all(char **map, int i);
 
 #endif

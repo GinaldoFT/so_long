@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_maps.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
+/*   Updated: 2025/05/18 10:55:18 by ginfranc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	draw_map(t_vars *vars)
@@ -37,6 +49,21 @@ void	draw_map(t_vars *vars)
 	}
 }
 
+void	ft_error(t_vars *vars)
+{
+	int	error;
+	ft_windown_size(vars);
+	error = rule_map(vars);
+	if (error == 0)
+		return ;
+	if (error == 2)
+		ft_putstr_fd("O mapa deve ser fechado por paredes!", 2);
+	if (error == 3)
+		ft_putstr_fd("As linhas deve ter o mesmo tamanho!", 2);
+	free_all(vars->map, vars->map_y / 32);
+		exit(0);
+}
+
 void	create_map(int fd, t_vars *vars)
 {
 	char	*maps;
@@ -67,12 +94,7 @@ void	create_map(int fd, t_vars *vars)
 		vars->map = ft_split(maps, '!');
 		free(maps);
 	}
-	ft_windown_size(vars);
-	if (rule_map(vars) == 1)
-	{
-		ft_printf("erro\n");
-		ft_close(vars);
-	}
+	ft_error(vars);
 }
 
 void	load_imgs(t_vars *vars)
@@ -80,21 +102,18 @@ void	load_imgs(t_vars *vars)
 	vars->img_p = mlx_xpm_file_to_image(vars->mlx, PLAYER, &vars->img_w, &vars->img_h);
 	if (!vars->img_p)
     ft_printf("Erro ao Carregar Player!");
-	vars->img_floor = mlx_xpm_file_to_image(vars->mlx, "sprites/floor.xpm", &vars->img_w, &vars->img_h);
+	vars->img_floor = mlx_xpm_file_to_image(vars->mlx, FLOOR, &vars->img_w, &vars->img_h);
 	if (!vars->img_floor)
 		ft_printf("Erro ao Carregar floor!");
-	vars->img_wall = mlx_xpm_file_to_image(vars->mlx, "sprites/wall.xpm", &vars->img_w, &vars->img_h);
+	vars->img_wall = mlx_xpm_file_to_image(vars->mlx, WALL, &vars->img_w, &vars->img_h);
 	if (!vars->img_wall)
 		ft_printf("Erro ao Carregar wall!");
-	vars->img_exit = mlx_xpm_file_to_image(vars->mlx, "sprites/exit.xpm", &vars->img_w, &vars->img_h);
+	vars->img_exit = mlx_xpm_file_to_image(vars->mlx, EXIT, &vars->img_w, &vars->img_h);
 	if (!vars->img_exit)
 		ft_printf("Erro ao Carregar exit!");
-	vars->img_coin = mlx_xpm_file_to_image(vars->mlx, "sprites/Coin_1.xpm", &vars->img_w, &vars->img_h);
+	vars->img_coin = mlx_xpm_file_to_image(vars->mlx, COIN, &vars->img_w, &vars->img_h);
 	if (!vars->img_coin)
 		ft_printf("Erro ao Carregar coin!");
-    vars->img_p2 = mlx_xpm_file_to_image(vars->mlx, "sprites/player2.xpm", &vars->img_w, &vars->img_h);
-	if (!vars->img_p)
-    ft_printf("Erro ao Carregar Player!");
 	draw_map(vars);
 }
 
