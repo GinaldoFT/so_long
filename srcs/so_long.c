@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 17:50:26 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:26:45 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,24 @@ int	ft_close(t_vars *vars, int n)
 	return (0);
 }
 
+void file_ber(char *file, int fd)
+{
+	const char	*ext;
+	size_t	len;
+
+	if (!file)
+		return ;
+	ext = ft_strrchr(file, '.');
+	if(!ext)
+		return ;
+	len = ft_strlen(ext);
+	if (ft_strncmp(ext, ".ber", len) != 0)
+	{
+		close(fd);
+		exit(0);
+	}
+}
+
 int	main(int ac, char *av[])
 {
 	t_vars	vars;
@@ -61,6 +79,7 @@ int	main(int ac, char *av[])
 	vars.fd = open(av[1], O_RDONLY);
 	if (vars.fd == -1)
 		return (0);
+	file_ber(av[1], vars.fd);
 	create_map(vars.fd, &vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.map_x, vars.map_y, "so_long");
