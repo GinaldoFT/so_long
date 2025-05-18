@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 14:42:52 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 17:43:16 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,9 @@ void	load_imgs(t_vars *vars)
 	vars->img_coin = mlx_xpm_file_to_image(vars->mlx, COIN, &vars->img_w, &vars->img_h);
 	if (!vars->img_coin)
 		ft_printf("Erro ao Carregar coin!");
+	vars->img_exitt = mlx_xpm_file_to_image(vars->mlx, EXITT, &vars->img_w, &vars->img_h);
+	if (!vars->img_exitt)
+		ft_printf("Erro ao Carregar exit2!");
 	draw_map(vars);
 }
 

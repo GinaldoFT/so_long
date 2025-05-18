@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 14:47:57 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:13:45 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	count_coins(t_vars *vars, int x, int y)
 		if (vars->coins == vars->coinsc)
 			ft_close(vars, 2);
 	}
+	if (vars->coins == vars->coinsc)
+		draw_trans_img(vars, vars->img_exitt, vars->ex, vars->ey);
 }
 
 int	ft_key_hook(int keycode, t_vars *vars)

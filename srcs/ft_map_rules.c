@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 14:18:19 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 17:43:19 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,11 @@ int	line_letter(t_vars *vars, t_rules *rules)
 			if (vars->map[rules->lines][rules->index] == 'P')
 				rules->player++;
 			if (vars->map[rules->lines][rules->index] == 'E')
+			{
+				vars->ey = rules->lines * TILE_SIZE;
+				vars->ex = rules->index * TILE_SIZE;
 				rules->exit++;
+			}
 			if (vars->map[rules->lines][rules->index] == 'C')
 				vars->coins++;
 			rules->index++;

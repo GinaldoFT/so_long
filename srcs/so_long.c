@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 14:56:53 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 17:50:26 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_close(t_vars *vars, int n)
 	mlx_clear_window(vars->mlx, vars->win);
 	mlx_destroy_image(vars->mlx, vars->img_coin);
 	mlx_destroy_image(vars->mlx, vars->img_exit);
+	mlx_destroy_image(vars->mlx, vars->img_exitt);
 	mlx_destroy_image(vars->mlx, vars->img_p);
 	mlx_destroy_image(vars->mlx, vars->img_wall);
 	mlx_destroy_image(vars->mlx, vars->img_floor);
@@ -58,6 +59,8 @@ int	main(int ac, char *av[])
 		return (1);
 	}
 	vars.fd = open(av[1], O_RDONLY);
+	if (vars.fd == -1)
+		return (0);
 	create_map(vars.fd, &vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.map_x, vars.map_y, "so_long");

@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 14:39:56 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 17:43:21 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define WALL "sprites/wall.xpm"
 # define COIN "sprites/Coin_1.xpm"
 # define EXIT "sprites/exit.xpm"
+# define EXITT "sprites/exit_2.xpm"
 
 typedef struct s_vars
 {
@@ -41,6 +42,7 @@ typedef struct s_vars
 	void	*img_floor;
 	void	*img_coin;
 	void	*img_exit;
+	void	*img_exitt;
 	int		img_w;
 	int		img_h;
 	int		x;
@@ -52,6 +54,8 @@ typedef struct s_vars
 	int 	coins;
 	int		coinsc;
 	int		fd;
+	int		ex;
+	int		ey;
 }	t_vars;
 
 typedef struct s_rules
