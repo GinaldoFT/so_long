@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 09:23:08 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 13:02:22 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	draw_tile(t_vars *vars, int x, int y)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
 }
 
-
 int	ft_key_hook(int keycode, t_vars *vars)
 {
 	int	new_y;
@@ -48,7 +47,6 @@ int	ft_key_hook(int keycode, t_vars *vars)
 		new_x -= TILE_SIZE;
 	if (keycode == D || keycode == 65363)
 		new_x += TILE_SIZE;
-
 	if (vars->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
 	{
 		draw_tile(vars, vars->x, vars->y);
@@ -58,6 +56,5 @@ int	ft_key_hook(int keycode, t_vars *vars)
 		vars->moves++;
 	//	ft_printf("Moves: %i\n", vars->moves);
 	}
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 09:55:20 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 12:42:00 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ typedef struct s_rules
     int j;
     int l;
 	size_t	len;
+	int player;
+    int coins;
+    int exit;
+	int lines;
+    size_t index;
 }	t_rules;
 
 

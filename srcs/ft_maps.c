@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 10:55:18 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 13:01:18 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@ void	draw_map(t_vars *vars)
 {
 	int		y;
 	int		x;
-	
+
 	y = 0;
 	while (vars->map[y])
 	{
 		x = 0;
 		while (vars->map[y][x])
 		{
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor,
-					x * TILE_SIZE, y * TILE_SIZE);
+			mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, \
+x * TILE_SIZE, y * TILE_SIZE);
 			if (vars->map[y][x] == 'P')
 			{
 				vars->x = x * TILE_SIZE;
 				vars->y = y * TILE_SIZE;
-                draw_trans_img(vars, vars->img_p, x * TILE_SIZE, y * TILE_SIZE);
+				draw_trans_img(vars, vars->img_p, x * TILE_SIZE, y * TILE_SIZE);
 			}
 			if (vars->map[y][x] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall,
-					x * TILE_SIZE, y * TILE_SIZE);	
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, \
+x * TILE_SIZE, y * TILE_SIZE);
 			else if (vars->map[y][x] == 'C')
 				draw_trans_img(vars, vars->img_coin, x * TILE_SIZE, y * TILE_SIZE);
 			else if (vars->map[y][x] == 'E')
@@ -41,8 +41,8 @@ void	draw_map(t_vars *vars)
 				draw_trans_img(vars, vars->img_exit, x * TILE_SIZE, y * TILE_SIZE);
 			}
 			if (vars->map[y][x] == '0')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor,
-					x * TILE_SIZE, y * TILE_SIZE);
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, \
+x * TILE_SIZE, y * TILE_SIZE);
 			x++;
 		}
 		y++;
@@ -52,6 +52,7 @@ void	draw_map(t_vars *vars)
 void	ft_error(t_vars *vars)
 {
 	int	error;
+
 	ft_windown_size(vars);
 	error = rule_map(vars);
 	if (error == 0)
@@ -61,21 +62,21 @@ void	ft_error(t_vars *vars)
 	if (error == 3)
 		ft_putstr_fd("As linhas deve ter o mesmo tamanho!", 2);
 	free_all(vars->map, vars->map_y / 32);
-		exit(0);
+	exit(0);
 }
 
 void	create_map(int fd, t_vars *vars)
 {
 	char	*maps;
 	char	*buffer;
-	char 	*tmp;
-	
+	char	*tmp;
+
 	maps = NULL;
 	while (1)
 	{
 		buffer = get_next_line(fd);
 		if (!buffer)
-			break;
+			break ;
 		if (!maps)
 			maps = ft_strdup(buffer);
 		else
@@ -101,7 +102,7 @@ void	load_imgs(t_vars *vars)
 {
 	vars->img_p = mlx_xpm_file_to_image(vars->mlx, PLAYER, &vars->img_w, &vars->img_h);
 	if (!vars->img_p)
-    ft_printf("Erro ao Carregar Player!");
+		ft_printf("Erro ao Carregar Player!");
 	vars->img_floor = mlx_xpm_file_to_image(vars->mlx, FLOOR, &vars->img_w, &vars->img_h);
 	if (!vars->img_floor)
 		ft_printf("Erro ao Carregar floor!");
@@ -117,7 +118,7 @@ void	load_imgs(t_vars *vars)
 	draw_map(vars);
 }
 
-void ft_windown_size(t_vars *vars)
+void	ft_windown_size(t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -130,4 +131,10 @@ void ft_windown_size(t_vars *vars)
 		j++;
 	vars->map_x = (j * TILE_SIZE) - 32;
 	vars->map_y = i * TILE_SIZE;
+	if (vars->map_x > 1920 || vars->map_y > 1024)
+	{
+		ft_putstr_fd("Mapa Muito Grande", 2);
+		free_all(vars->map, vars->map_y / 32);
+		exit(0);
+	}
 }
