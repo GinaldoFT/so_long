@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 12:55:16 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 14:18:19 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	first_and_last(t_vars *vars, t_rules *rules)
 int	line_letter(t_vars *vars, t_rules *rules)
 {
 	rules->player = 0;
-	rules->coins = 0;
+	vars->coins = 0;
 	rules->exit = 0;
 	rules->lines = 1;
 	while (rules->lines < rules->last)
@@ -73,7 +73,7 @@ int	line_letter(t_vars *vars, t_rules *rules)
 			if (vars->map[rules->lines][rules->index] == 'E')
 				rules->exit++;
 			if (vars->map[rules->lines][rules->index] == 'C')
-				rules->coins++;
+				vars->coins++;
 			rules->index++;
 		}
 		rules->lines++;
@@ -81,19 +81,25 @@ int	line_letter(t_vars *vars, t_rules *rules)
 	return (0);
 }
 
-int	number_carac(t_rules *rules)
+int	number_carac(t_vars *vars, t_rules *rules)
 {
 	if (rules->player != 1)
 	{
-		ft_printf("Maximo de player e 1");
+		if (rules->player > 1)
+			ft_printf("Maximo de player e 1");
+		else if (rules->player < 1)
+			ft_printf("Minimo de player e 1");
 		return (1);
 	}
 	if (rules->exit != 1)
 	{
-		ft_printf("Maximo de portas e 1");
+		if (rules->exit > 1)
+			ft_printf("Maximo de portas e 1");
+		else if (rules->exit < 1)
+			ft_printf("Minimo de portas e 1");
 		return (1);
 	}
-	if (rules->coins < 1)
+	if (vars->coins < 1)
 	{
 		ft_printf("Minimo de coins e 1");
 		return (1);
@@ -112,7 +118,7 @@ int	rule_map(t_vars *vars)
 		return (3);
 	if (first_and_last(vars, &rules) == 1)
 		return (2);
-	if (line_letter(vars, &rules) == 1 || number_carac(&rules) == 1)
+	if (line_letter(vars, &rules) == 1 || number_carac(vars, &rules) == 1)
 		return (1);
 	rules.j = 1;
 	rules.l = 1;

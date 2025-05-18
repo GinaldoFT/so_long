@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 13:02:22 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/18 14:47:57 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,24 @@ void	draw_tile(t_vars *vars, int x, int y)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
 }
 
+void	count_coins(t_vars *vars, int x, int y)
+{
+	char	tile;
+
+	tile = vars->map[y / TILE_SIZE][x / TILE_SIZE];
+	if (tile == 'C')
+	{
+		vars->coinsc++;
+		vars->map[y / TILE_SIZE][x / TILE_SIZE] = '0';
+		draw_trans_img(vars, vars->img_floor, x, y);
+	}
+	else if (tile == 'E')
+	{
+		if (vars->coins == vars->coinsc)
+			ft_close(vars, 2);
+	}
+}
+
 int	ft_key_hook(int keycode, t_vars *vars)
 {
 	int	new_y;
@@ -38,7 +56,7 @@ int	ft_key_hook(int keycode, t_vars *vars)
 	new_x = vars->x;
 	new_y = vars->y;
 	if (keycode == ESC)
-		ft_close(vars);
+		ft_close(vars, 1);
 	if (keycode == W || keycode == 65362)
 		new_y -= TILE_SIZE;
 	if (keycode == S || keycode == 65364)
@@ -52,9 +70,10 @@ int	ft_key_hook(int keycode, t_vars *vars)
 		draw_tile(vars, vars->x, vars->y);
 		vars->x = new_x;
 		vars->y = new_y;
+		count_coins(vars, vars->x, vars->y);
 		draw_trans_img(vars, vars->img_p, vars->x, vars->y);
 		vars->moves++;
-	//	ft_printf("Moves: %i\n", vars->moves);
+		ft_printf("Moves: %i\n", vars->moves);
 	}
 	return (0);
 }
