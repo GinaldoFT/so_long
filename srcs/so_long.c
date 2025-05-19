@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/18 19:26:45 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:46:45 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int ac, char *av[])
 {
 	t_vars	vars;
 
-	vars.moves = -1;
+	vars.moves = 0;
 	vars.coinsc = 0;
 	if (ac != 2)
 	{
