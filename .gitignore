@@ -21,7 +21,6 @@
 *.a
 *.la
 *.lo
-libs/
 
 # Shared objects (inc. Windows DLLs)
 *.dll
