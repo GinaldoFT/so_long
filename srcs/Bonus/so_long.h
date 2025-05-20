@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/20 13:56:45 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:40:38 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_vars
 	int		ex;
 	int		ey;
 	char	**clone_map;
+	t_anims	anims;
 }	t_vars;
 
 typedef struct s_rules

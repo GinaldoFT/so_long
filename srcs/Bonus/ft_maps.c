@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/20 13:56:42 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:44:33 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	draw_map(t_vars *vars)
 		x = 0;
 		while (vars->map[y][x])
 		{
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, \
-x * TILE_SIZE, y * TILE_SIZE);
+			draw_trans_img(vars, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
 			if (vars->map[y][x] == 'P')
 			{
 				vars->x = x * TILE_SIZE;
@@ -32,8 +31,7 @@ x * TILE_SIZE, y * TILE_SIZE);
 				draw_trans_img(vars, vars->img_p, x * TILE_SIZE, y * TILE_SIZE);
 			}
 			if (vars->map[y][x] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, \
-x * TILE_SIZE, y * TILE_SIZE);
+				draw_trans_img(vars, vars->img_wall, x * TILE_SIZE, y * TILE_SIZE);
 			else if (vars->map[y][x] == 'C')
 				draw_trans_img(vars, vars->img_coin, x * TILE_SIZE, y * TILE_SIZE);
 			else if (vars->map[y][x] == 'E')
@@ -41,8 +39,7 @@ x * TILE_SIZE, y * TILE_SIZE);
 				draw_trans_img(vars, vars->img_exit, x * TILE_SIZE, y * TILE_SIZE);
 			}
 			if (vars->map[y][x] == '0')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, \
-x * TILE_SIZE, y * TILE_SIZE);
+				draw_trans_img(vars, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
 			x++;
 		}
 		y++;
