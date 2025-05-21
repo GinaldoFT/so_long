@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 16:11:07 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 19:06:45 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ x * TILE_SIZE, y * TILE_SIZE);
 			{
 				vars->x = x * TILE_SIZE;
 				vars->y = y * TILE_SIZE;
-				draw_trans_img(vars, vars->img_p, x * TILE_SIZE, y * TILE_SIZE);
+				draw_trans_img(vars, vars->img_p[0], x * TILE_SIZE, y * TILE_SIZE);
 			}
 			if (vars->map[y][x] == '1')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, \
@@ -103,8 +103,8 @@ void	create_map(int fd, t_vars *vars)
 
 void	load_imgs(t_vars *vars)
 {
-	vars->img_p = mlx_xpm_file_to_image(vars->mlx, PLAYER, &vars->img_w, &vars->img_h);
-	if (!vars->img_p)
+	vars->img_p[0] = mlx_xpm_file_to_image(vars->mlx, PLAYER, &vars->img_w, &vars->img_h);
+	if (!vars->img_p[0])
 		ft_printf("Erro ao Carregar Player!");
 	vars->img_floor = mlx_xpm_file_to_image(vars->mlx, FLOOR, &vars->img_w, &vars->img_h);
 	if (!vars->img_floor)
@@ -122,6 +122,7 @@ void	load_imgs(t_vars *vars)
 	if (!vars->img_exit[1])
 		ft_printf("Erro ao Carregar exit2!");
 	draw_map(vars);
+	load_imgs_bonus(vars);
 }
 
 void	ft_windown_size(t_vars *vars)

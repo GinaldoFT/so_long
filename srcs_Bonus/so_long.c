@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 15:07:21 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 19:09:42 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ void	check_fd(t_vars *vars, char *str)
 	char buffer[1];
 	vars->moves = 0;
 	vars->coinsc = 0;
-
+	vars->counter = 0;
+	vars->count = 0;
+	vars->anim = 0;
 	vars->fd = open(str, O_RDONLY);
 	if (vars->fd == -1)
 	{
@@ -106,6 +108,7 @@ int	main(int ac, char *av[])
 	vars.win = mlx_new_window(vars.mlx, vars.map_x, vars.map_y, "so_long");
 	load_imgs(&vars);
 	mlx_key_hook(vars.win, ft_key_hook, &vars);
+	mlx_loop_hook(vars.mlx, animation_coin, &vars);
 	mlx_hook(vars.win, 17, 0, ft_close, &vars);
 	mlx_loop(vars.mlx);
 	return (0);

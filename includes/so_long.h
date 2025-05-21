@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 16:11:11 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 19:06:49 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
-	void	*img_p;
-	void	*img_p2;
+	void	*img_p[8];
 	void	*img_wall;
 	void	*img_floor;
 	void	*img_coin[4];
@@ -62,6 +61,7 @@ typedef struct s_vars
 	char	**clone_map;
 	int		count;
 	int		anim;
+	int 	counter;
 }	t_vars;
 
 typedef struct s_rules
@@ -89,7 +89,8 @@ int				rule_map(t_vars *vars);
 int				ft_close(t_vars *vars, int n);
 void			*free_all(char **map, int i);
 int				 path(t_vars *vars, t_rules *rules);
-//void    load_imgs_bonus(t_vars *vars, t_anims *anims);
+int				animation_coin(t_vars *vars);
+void    load_imgs_bonus(t_vars *vars);
 //void    animation_coin(t_vars *vars, t_anims *anims, int x, int y);
 
 #endif

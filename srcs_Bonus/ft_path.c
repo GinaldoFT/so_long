@@ -35,19 +35,6 @@ int clone_map(t_vars *vars, t_rules *rules)
 	return (0);
 }
 
-void    test(t_vars *vars, t_rules *rules)
-{
-    int i;
-
-    i = 0;
-    while (i <= rules->last)
-    {
-        ft_printf("%s", vars->clone_map[i]);
-        i++;
-    }
-    
-}
-
 int path(t_vars *vars, t_rules *rules)
 {
     int x;
@@ -56,7 +43,6 @@ int path(t_vars *vars, t_rules *rules)
     x = vars->x / TILE_SIZE;
     y = vars->y / TILE_SIZE;
     flood_fill(x,  y, vars);
-    test(vars, rules);
     if (clone_map(vars, rules) == 1)
     {
         ft_putstr_fd("\nError\nSem caminho valido", 2);
