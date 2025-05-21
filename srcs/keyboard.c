@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/19 12:46:41 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:27:42 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_tile(t_vars *vars, int x, int y)
 	else if (tile == 'E')
 	{
 		draw_trans_img(vars, vars->img_floor, x, y);
-		draw_trans_img(vars, vars->img_exit, x, y);
+		draw_trans_img(vars, vars->img_exit[0], x, y);
 	}
 	else if (tile == 'P')
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
@@ -47,7 +47,7 @@ void	count_coins(t_vars *vars, int x, int y)
 			ft_close(vars, 2);
 	}
 	if (vars->coins == vars->coinsc)
-		draw_trans_img(vars, vars->img_exitt, vars->ex, vars->ey);
+		draw_trans_img(vars, vars->img_exit[1], vars->ex, vars->ey);
 }
 
 int	ft_key_hook(int keycode, t_vars *vars)

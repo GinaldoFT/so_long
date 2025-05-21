@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/20 13:56:43 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:11:08 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int	rule_map(t_vars *vars)
 		rules.l++;
 		rules.j++;
 	}
-	if (path(vars) == 1)
+	if (path(vars, &rules) == 1)
 		return (1);
 	return (0);
 }

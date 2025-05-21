@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 INCLUDES = -Iincludes -Ilibs/libft -Ilibs/ft_printf/include -Ilibs/mlx
-SRC_DIR = srcs
+SRC_DIR = srcs_Bonus
 LIB_DIR = libs
 
 LIBFT_DIR = $(LIB_DIR)/libft

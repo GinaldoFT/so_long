@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/20 13:56:45 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:11:11 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include "mlx.h"
 # include "ft_printf.h"
-# include "header_bonus.h"
 # include <stdio.h>
 # include <fcntl.h>
 
@@ -33,6 +32,10 @@
 # define EXIT "sprites/exit.xpm"
 # define EXITT "sprites/exit_2.xpm"
 
+# define COIN2 "sprites/Coin_2.xpm"
+# define COIN3 "sprites/Coin_3.xpm"
+# define COIN4 "sprites/Coin_4.xpm"
+
 typedef struct s_vars
 {
 	void	*mlx;
@@ -41,9 +44,8 @@ typedef struct s_vars
 	void	*img_p2;
 	void	*img_wall;
 	void	*img_floor;
-	void	*img_coin;
-	void	*img_exit;
-	void	*img_exitt;
+	void	*img_coin[4];
+	void	*img_exit[2];
 	int		img_w;
 	int		img_h;
 	int		x;
@@ -58,6 +60,8 @@ typedef struct s_vars
 	int		ex;
 	int		ey;
 	char	**clone_map;
+	int		count;
+	int		anim;
 }	t_vars;
 
 typedef struct s_rules
@@ -84,8 +88,8 @@ void			draw_trans_img(t_vars *vars, void *img, int posx, int posy);
 int				rule_map(t_vars *vars);
 int				ft_close(t_vars *vars, int n);
 void			*free_all(char **map, int i);
-int				path(t_vars *vars);
-void    load_imgs_bonus(t_vars *vars, t_anims *anims);
-void    animation_coin(t_vars *vars, t_anims *anims, int x, int y);
+int				 path(t_vars *vars, t_rules *rules);
+//void    load_imgs_bonus(t_vars *vars, t_anims *anims);
+//void    animation_coin(t_vars *vars, t_anims *anims, int x, int y);
 
 #endif

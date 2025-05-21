@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/20 12:04:29 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:07:21 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ void	*free_all(char **map, int i)
 int	ft_close(t_vars *vars, int n)
 {
 	mlx_clear_window(vars->mlx, vars->win);
-	mlx_destroy_image(vars->mlx, vars->img_coin);
-	mlx_destroy_image(vars->mlx, vars->img_exit);
-	mlx_destroy_image(vars->mlx, vars->img_exitt);
+	mlx_destroy_image(vars->mlx, vars->img_coin[0]);
+	mlx_destroy_image(vars->mlx, vars->img_exit[0]);
+	mlx_destroy_image(vars->mlx, vars->img_exit[1]);
 	mlx_destroy_image(vars->mlx, vars->img_p);
 	mlx_destroy_image(vars->mlx, vars->img_wall);
 	mlx_destroy_image(vars->mlx, vars->img_floor);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
-	free_all(vars->map, vars->map_y / 32);
+	free_all(vars->map, vars->map_y / TILE_SIZE);
+	free_all(vars->clone_map, vars->map_y / TILE_SIZE);
 	free(vars->mlx);
 	close(vars->fd);
 	if (n == 2)

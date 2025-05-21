@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/20 14:40:30 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:27:42 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ void	draw_tile(t_vars *vars, int x, int y)
 
 	tile = vars->map[y / TILE_SIZE][x / TILE_SIZE];
 	if (tile == '0')
-		draw_trans_img(vars, vars->floor, x, y);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
 	else if (tile == 'C')
 		draw_trans_img(vars, vars->img_floor, x, y);
 	else if (tile == 'E')
 	{
 		draw_trans_img(vars, vars->img_floor, x, y);
-		draw_trans_img(vars, vars->img_exit, x, y);
+		draw_trans_img(vars, vars->img_exit[0], x, y);
 	}
 	else if (tile == 'P')
-		draw_trans_img(vars, vars->floor, x, y);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x, y);
+}
 
 void	count_coins(t_vars *vars, int x, int y)
 {
@@ -46,7 +47,7 @@ void	count_coins(t_vars *vars, int x, int y)
 			ft_close(vars, 2);
 	}
 	if (vars->coins == vars->coinsc)
-		draw_trans_img(vars, vars->img_exitt, vars->ex, vars->ey);
+		draw_trans_img(vars, vars->img_exit[1], vars->ex, vars->ey);
 }
 
 int	ft_key_hook(int keycode, t_vars *vars)
@@ -66,7 +67,6 @@ int	ft_key_hook(int keycode, t_vars *vars)
 		new_x -= TILE_SIZE;
 	if (keycode == D || keycode == 65363)
 		new_x += TILE_SIZE;
-	animation_coin(vars, vars->anims, 64, 128);
 	if (vars->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
 	{
 		if (new_x != vars->x || new_y != vars->y)
@@ -76,7 +76,7 @@ int	ft_key_hook(int keycode, t_vars *vars)
 		vars->y = new_y;
 		count_coins(vars, vars->x, vars->y);
 		draw_trans_img(vars, vars->img_p, vars->x, vars->y);
-	//	ft_printf("Moves: %i\n", vars->moves);
+		ft_printf("Moves: %i\n", vars->moves);
 	}
 	return (0);
 }

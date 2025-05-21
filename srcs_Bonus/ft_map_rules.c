@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/20 14:44:31 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:11:08 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	first_and_last(t_vars *vars, t_rules *rules)
 	return (0);
 }
 
-int	line_letter(t_vars *vars, t_rules *rules, t_anims *anims)
+int	line_letter(t_vars *vars, t_rules *rules)
 {
 	rules->player = 0;
 	vars->coins = 0;
@@ -126,8 +126,7 @@ int	rule_map(t_vars *vars)
 		return (3);
 	if (first_and_last(vars, &rules) == 1)
 		return (2);
-	load_imgs_bonus(vars, vars->anims);
-	if (line_letter(vars, &rules, vars->anims) == 1 || number_carac(vars, &rules) == 1)
+	if (line_letter(vars, &rules) == 1 || number_carac(vars, &rules) == 1)
 		return (1);
 	rules.j = 1;
 	rules.l = 1;
@@ -141,7 +140,7 @@ int	rule_map(t_vars *vars)
 		rules.l++;
 		rules.j++;
 	}
-	if (path(vars) == 1)
+	if (path(vars, &rules) == 1)
 		return (1);
 	return (0);
 }
