@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 19:06:49 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 21:25:09 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # define COIN "sprites/Coin_1.xpm"
 # define EXIT "sprites/exit.xpm"
 # define EXITT "sprites/exit_2.xpm"
-
 # define COIN2 "sprites/Coin_2.xpm"
 # define COIN3 "sprites/Coin_3.xpm"
 # define COIN4 "sprites/Coin_4.xpm"
@@ -90,7 +89,7 @@ int				ft_close(t_vars *vars, int n);
 void			*free_all(char **map, int i);
 int				 path(t_vars *vars, t_rules *rules);
 int				animation_coin(t_vars *vars);
-void    load_imgs_bonus(t_vars *vars);
-//void    animation_coin(t_vars *vars, t_anims *anims, int x, int y);
+void   			 load_imgs_bonus(t_vars *vars);
+void			print_move_count(t_vars *vars);
 
 #endif

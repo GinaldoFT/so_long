@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 15:07:21 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 21:52:59 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_close(t_vars *vars, int n)
 	mlx_destroy_image(vars->mlx, vars->img_coin[0]);
 	mlx_destroy_image(vars->mlx, vars->img_exit[0]);
 	mlx_destroy_image(vars->mlx, vars->img_exit[1]);
-	mlx_destroy_image(vars->mlx, vars->img_p);
+	mlx_destroy_image(vars->mlx, vars->img_p[0]);
 	mlx_destroy_image(vars->mlx, vars->img_wall);
 	mlx_destroy_image(vars->mlx, vars->img_floor);
 	mlx_destroy_window(vars->mlx, vars->win);

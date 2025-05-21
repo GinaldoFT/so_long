@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 19:09:42 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/21 21:49:47 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_close(t_vars *vars, int n)
 	mlx_destroy_image(vars->mlx, vars->img_coin[0]);
 	mlx_destroy_image(vars->mlx, vars->img_exit[0]);
 	mlx_destroy_image(vars->mlx, vars->img_exit[1]);
-	mlx_destroy_image(vars->mlx, vars->img_p);
+	mlx_destroy_image(vars->mlx, vars->img_p[0]);
 	mlx_destroy_image(vars->mlx, vars->img_wall);
 	mlx_destroy_image(vars->mlx, vars->img_floor);
 	mlx_destroy_window(vars->mlx, vars->win);
@@ -61,6 +61,19 @@ void	file_ber(char *file, int fd)
 		close(fd);
 		exit(0);
 	}
+}
+
+void	print_move_count(t_vars *vars)
+{
+	char	*str;
+	char	*full_str;
+
+	str = ft_itoa(vars->moves);
+	full_str = ft_strjoin("Moves: ", str);
+	free(str);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, 32, 0);
+	mlx_string_put(vars->mlx, vars->win, 0, 16, 0xFFFFFF, full_str);
+	free(full_str);
 }
 
 void	check_fd(t_vars *vars, char *str)
