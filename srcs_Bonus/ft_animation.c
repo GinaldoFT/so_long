@@ -8,8 +8,6 @@ void    load_imgs_bonus(t_vars *vars)
 	vars->img_p[1] = mlx_xpm_file_to_image(vars->mlx, "sprites/player2.xpm", &vars->img_w, &vars->img_h);
 	vars->img_p[2] = mlx_xpm_file_to_image(vars->mlx, "sprites/player3.xpm", &vars->img_w, &vars->img_h);
 	vars->img_p[3] = mlx_xpm_file_to_image(vars->mlx, "sprites/player4.xpm", &vars->img_w, &vars->img_h);
-	vars->img_p[4] = mlx_xpm_file_to_image(vars->mlx, "sprites/player5.xpm", &vars->img_w, &vars->img_h);
-	vars->img_p[5] = mlx_xpm_file_to_image(vars->mlx, "sprites/player6.xpm", &vars->img_w, &vars->img_h);
 }
 
 void	draw_animation(t_vars *vars)
@@ -32,6 +30,8 @@ void	draw_animation(t_vars *vars)
 		}
 		y++;
 	}
+	draw_trans_img(vars, vars->img_floor, vars->x, vars->y);
+	draw_trans_img(vars, vars->img_p[vars->anim], vars->x, vars->y);
 }
 
 int    animation_coin(t_vars *vars)
