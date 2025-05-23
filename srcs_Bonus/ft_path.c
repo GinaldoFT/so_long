@@ -45,7 +45,7 @@ int path(t_vars *vars, t_rules *rules)
     flood_fill(x,  y, vars);
     if (clone_map(vars, rules) == 1)
     {
-        ft_putstr_fd("\nError\nSem caminho valido", 2);
+        ft_putstr_fd("Error\nSem caminho valido", 2);
         return (1);
     }
     return (0);

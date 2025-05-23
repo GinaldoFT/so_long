@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 21:00:44 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/23 10:11:01 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ x * TILE_SIZE, y * TILE_SIZE);
 			{
 				draw_trans_img(vars, vars->img_exit[0], x * TILE_SIZE, y * TILE_SIZE);
 			}
-			if (vars->map[y][x] == '0')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, \
-x * TILE_SIZE, y * TILE_SIZE);
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 21:25:09 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:51:38 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 # define PLAYER "sprites/player.xpm"
 # define FLOOR "sprites/floor.xpm"
 # define WALL "sprites/wall.xpm"
-# define COIN "sprites/Coin_1.xpm"
 # define EXIT "sprites/exit.xpm"
 # define EXITT "sprites/exit_2.xpm"
+# define COIN "sprites/Coin_1.xpm"
 # define COIN2 "sprites/Coin_2.xpm"
 # define COIN3 "sprites/Coin_3.xpm"
 # define COIN4 "sprites/Coin_4.xpm"
@@ -39,13 +39,15 @@ typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
-	void	*img_p[8];
+	void	*img_p[4];
 	void	*img_wall;
 	void	*img_floor;
 	void	*img_coin[4];
 	void	*img_exit[2];
-	int		img_w;
-	int		img_h;
+	void	*img_enemy[4];
+	void	*img_fenemy[4];
+	int		enemy_x;
+	int		enemy_y;
 	int		x;
 	int		y;
 	char	**map;
@@ -61,6 +63,8 @@ typedef struct s_vars
 	int		count;
 	int		anim;
 	int 	counter;
+	int		wall;
+	int		wall2;
 }	t_vars;
 
 typedef struct s_rules
@@ -74,6 +78,7 @@ typedef struct s_rules
 	int player;
     int exit;
 	int lines;
+	int	enemy;
     size_t index;
 }	t_rules;
 
@@ -91,5 +96,7 @@ int				 path(t_vars *vars, t_rules *rules);
 int				animation_coin(t_vars *vars);
 void   			 load_imgs_bonus(t_vars *vars);
 void			print_move_count(t_vars *vars);
+void    		moviment(t_vars *vars);
+void			draw_tile(t_vars *vars, int x, int y);
 
 #endif

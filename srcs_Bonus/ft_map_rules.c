@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 16:11:08 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:34:08 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	first_and_last(t_vars *vars, t_rules *rules)
 int	line_letter(t_vars *vars, t_rules *rules)
 {
 	rules->player = 0;
+	rules->enemy = 0;
 	vars->coins = 0;
 	rules->exit = 0;
 	rules->lines = 1;
@@ -63,6 +64,7 @@ int	line_letter(t_vars *vars, t_rules *rules)
 			vars->map[rules->lines][rules->index] != 'E' && \
 			vars->map[rules->lines][rules->index] != 'C' && \
 			vars->map[rules->lines][rules->index] != '0' && \
+			vars->map[rules->lines][rules->index] != 'M' && \
 			vars->map[rules->lines][rules->index] != '\n')
 			{
 				ft_printf("Caracterer invalido: %c", vars->map[rules->lines][rules->index]);
@@ -80,6 +82,8 @@ int	line_letter(t_vars *vars, t_rules *rules)
 				vars->ex = rules->index * TILE_SIZE;
 				rules->exit++;
 			}
+			if (vars->map[rules->lines][rules->index] == 'M')
+				rules->enemy++;
 			if (vars->map[rules->lines][rules->index] == 'C')
 				vars->coins++;
 			rules->index++;
@@ -110,6 +114,11 @@ int	number_carac(t_vars *vars, t_rules *rules)
 	if (vars->coins < 1)
 	{
 		ft_printf("Minimo de coins e 1");
+		return (1);
+	}
+	if (rules->enemy > 1)
+	{
+		ft_printf("Maximo de inimigos e 1");
 		return (1);
 	}
 	return (0);

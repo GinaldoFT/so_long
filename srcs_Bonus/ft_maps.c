@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 19:06:45 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/23 10:56:05 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,26 @@ void	draw_map(t_vars *vars)
 		{
 			if (vars->map[y][x] == '\n')
 				break;
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, \
-x * TILE_SIZE, y * TILE_SIZE);
+			mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
 			if (vars->map[y][x] == 'P')
 			{
 				vars->x = x * TILE_SIZE;
 				vars->y = y * TILE_SIZE;
-				draw_trans_img(vars, vars->img_p[0], x * TILE_SIZE, y * TILE_SIZE);
 			}
-			if (vars->map[y][x] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, \
-x * TILE_SIZE, y * TILE_SIZE);
+			else if (vars->map[y][x] == '1')
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, x * TILE_SIZE, y * TILE_SIZE);
 			else if (vars->map[y][x] == 'C')
 				draw_trans_img(vars, vars->img_coin[0], x * TILE_SIZE, y * TILE_SIZE);
 			else if (vars->map[y][x] == 'E')
 			{
 				draw_trans_img(vars, vars->img_exit[0], x * TILE_SIZE, y * TILE_SIZE);
 			}
-			if (vars->map[y][x] == '0')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, \
-x * TILE_SIZE, y * TILE_SIZE);
+			else if (vars->map[y][x] == 'M')
+			{
+				vars->enemy_x = x * TILE_SIZE;
+				vars->enemy_y = y * TILE_SIZE;
+				vars->map[y][x] = '0';
+			}
 			x++;
 		}
 		y++;
@@ -103,22 +103,25 @@ void	create_map(int fd, t_vars *vars)
 
 void	load_imgs(t_vars *vars)
 {
-	vars->img_p[0] = mlx_xpm_file_to_image(vars->mlx, PLAYER, &vars->img_w, &vars->img_h);
+	int	h;
+	int	w;
+
+	vars->img_p[0] = mlx_xpm_file_to_image(vars->mlx, PLAYER, &w, &h);
 	if (!vars->img_p[0])
 		ft_printf("Erro ao Carregar Player!");
-	vars->img_floor = mlx_xpm_file_to_image(vars->mlx, FLOOR, &vars->img_w, &vars->img_h);
+	vars->img_floor = mlx_xpm_file_to_image(vars->mlx, FLOOR, &w, &h);
 	if (!vars->img_floor)
 		ft_printf("Erro ao Carregar floor!");
-	vars->img_wall = mlx_xpm_file_to_image(vars->mlx, WALL, &vars->img_w, &vars->img_h);
+	vars->img_wall = mlx_xpm_file_to_image(vars->mlx, WALL, &w, &h);
 	if (!vars->img_wall)
 		ft_printf("Erro ao Carregar wall!");
-	vars->img_exit[0] = mlx_xpm_file_to_image(vars->mlx, EXIT, &vars->img_w, &vars->img_h);
+	vars->img_exit[0] = mlx_xpm_file_to_image(vars->mlx, EXIT, &w, &h);
 	if (!vars->img_exit[0])
 		ft_printf("Erro ao Carregar exit!");
-	vars->img_coin[0] = mlx_xpm_file_to_image(vars->mlx, COIN, &vars->img_w, &vars->img_h);
+	vars->img_coin[0] = mlx_xpm_file_to_image(vars->mlx, COIN, &w, &h);
 	if (!vars->img_coin[0])
 		ft_printf("Erro ao Carregar coin!");
-	vars->img_exit[1] = mlx_xpm_file_to_image(vars->mlx, EXITT, &vars->img_w, &vars->img_h);
+	vars->img_exit[1] = mlx_xpm_file_to_image(vars->mlx, EXITT, &w, &h);
 	if (!vars->img_exit[1])
 		ft_printf("Erro ao Carregar exit2!");
 	draw_map(vars);

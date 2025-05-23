@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 21:49:47 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:27:15 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	ft_close(t_vars *vars, int n)
 		ft_printf("YOU WIN!");
 		exit(0);
 	}
+	if (n == 3)
+		exit(0);
 	ft_printf("Closed");
 	exit(0);
 	return (0);
@@ -85,6 +87,8 @@ void	check_fd(t_vars *vars, char *str)
 	vars->counter = 0;
 	vars->count = 0;
 	vars->anim = 0;
+	vars->wall = 0;
+	vars->wall2 = 0;
 	vars->fd = open(str, O_RDONLY);
 	if (vars->fd == -1)
 	{
