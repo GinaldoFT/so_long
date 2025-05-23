@@ -24,7 +24,7 @@ void	draw_map(t_vars *vars)
 		while (vars->map[y][x])
 		{
 			if (vars->map[y][x] == '\n')
-				break;
+				break ;
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
 			if (vars->map[y][x] == 'P')
 			{

@@ -80,8 +80,9 @@ void	print_move_count(t_vars *vars)
 
 void	check_fd(t_vars *vars, char *str)
 {
-	int	i;
-	char buffer[1];
+	int		i;
+	char	buffer[1];
+
 	vars->moves = 0;
 	vars->coinsc = 0;
 	vars->counter = 0;

@@ -12,12 +12,12 @@
 
 #include "so_long.h"
 
-void    load_imgs_bonus(t_vars *vars)
+void	load_imgs_bonus(t_vars *vars)
 {
 	int	w;
 	int	h;
 
-    vars->img_coin[1] = mlx_xpm_file_to_image(vars->mlx, COIN2, &w, &h);
+	vars->img_coin[1] = mlx_xpm_file_to_image(vars->mlx, COIN2, &w, &h);
 	vars->img_coin[2] = mlx_xpm_file_to_image(vars->mlx, COIN3, &w, &h);
 	vars->img_coin[3] = mlx_xpm_file_to_image(vars->mlx, COIN4, &w, &h);
 	vars->img_p[1] = mlx_xpm_file_to_image(vars->mlx, "sprites/player2.xpm", &w, &h);
@@ -62,12 +62,12 @@ void	draw_animation(t_vars *vars)
 		draw_trans_img(vars, vars->img_enemy[vars->anim], vars->enemy_x, vars->enemy_y);
 }
 
-int    animation_coin(t_vars *vars)
+int	animation_coin(t_vars *vars)
 {
-	vars->count ++;
+	vars->count++;
 	if (vars->count == 15000)
 	{
-    	if (vars->anim + 1 == 4)
+		if (vars->anim + 1 == 4)
 			vars->anim = 0;
 		else
 			vars->anim++;

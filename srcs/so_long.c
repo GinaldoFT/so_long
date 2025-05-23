@@ -65,11 +65,11 @@ void	file_ber(char *file, int fd)
 
 void	check_fd(t_vars *vars, char *str)
 {
-	int	i;
-	char buffer[1];
+	int		i;
+	char	buffer[1];
+
 	vars->moves = 0;
 	vars->coinsc = 0;
-
 	vars->fd = open(str, O_RDONLY);
 	if (vars->fd == -1)
 	{

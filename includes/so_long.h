@@ -54,7 +54,7 @@ typedef struct s_vars
 	int		map_x;
 	int		map_y;
 	int		moves;
-	int 	coins;
+	int		coins;
 	int		coinsc;
 	int		fd;
 	int		ex;
@@ -62,24 +62,24 @@ typedef struct s_vars
 	char	**clone_map;
 	int		count;
 	int		anim;
-	int 	counter;
+	int		counter;
 	int		wall;
 	int		wall2;
 }	t_vars;
 
 typedef struct s_rules
 {
-	int i;
-    int end;
-    int last;
-    int j;
-    int l;
+	int		i;
+	int		end;
+	int		last;
+	int		j;
+	int		l;
 	size_t	len;
-	int player;
-    int exit;
-	int lines;
-	int	enemy;
-    size_t index;
+	int		player;
+	int		exit;
+	int		lines;
+	int		enemy;
+	size_t	index;
 }	t_rules;
 
 int				ft_key_hook(int keycode, t_vars *vars);
@@ -92,11 +92,11 @@ void			draw_trans_img(t_vars *vars, void *img, int posx, int posy);
 int				rule_map(t_vars *vars);
 int				ft_close(t_vars *vars, int n);
 void			*free_all(char **map, int i);
-int				 path(t_vars *vars, t_rules *rules);
+int				path(t_vars *vars, t_rules *rules);
 int				animation_coin(t_vars *vars);
-void   			 load_imgs_bonus(t_vars *vars);
+void			load_imgs_bonus(t_vars *vars);
 void			print_move_count(t_vars *vars);
-void    		moviment(t_vars *vars);
+void			moviment(t_vars *vars);
 void			draw_tile(t_vars *vars, int x, int y);
 
 #endif
