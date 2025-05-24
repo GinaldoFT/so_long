@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 15:51:37 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:56:26 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	draw_map_utils(t_vars *vars, int y, int x)
 	{
 		vars->x = x * TILE_SIZE;
 		vars->y = y * TILE_SIZE;
+		draw_trans_img(vars, vars->img_p[0], x * TILE_SIZE, y * TILE_SIZE);
 	}
 	else if (vars->map[y][x] == '1')
 		mlx_put_image_to_window(vars->mlx, vars->win, \

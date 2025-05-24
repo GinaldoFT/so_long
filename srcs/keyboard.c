@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 11:50:30 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 16:03:13 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_key_hook2(t_vars *vars, int new_y, int new_x)
 		vars->x = new_x;
 		vars->y = new_y;
 		count_coins(vars, vars->x, vars->y);
-		draw_trans_img(vars, vars->img_p[vars->anim], vars->x, vars->y);
+		draw_trans_img(vars, vars->img_p[0], vars->x, vars->y);
 		ft_printf("Moves: %d\n", vars->moves);
 	}
 }
