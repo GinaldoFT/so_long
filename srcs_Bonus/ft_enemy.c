@@ -6,65 +6,65 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:50:58 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 11:36:44 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 16:27:52 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	moviment2(t_vars *vars)
+void	move_enemy(t_vars *vars, int dx, int dy, void *img)
 {
-	if (vars->wall2 == 0)
+	draw_tile(vars, vars->enemy_x, vars->enemy_y);
+	vars->enemy_x += dx;
+	vars->enemy_y += dy;
+	draw_trans_img(vars, img, vars->enemy_x, vars->enemy_y);
+}
+
+void	move_enemy_vertical(t_vars *vars)
+{
+	int tile_x;
+	int tile_y;
+
+	tile_x = vars->enemy_x / TILE_SIZE;
+	tile_y = vars->enemy_y / TILE_SIZE;
+	if (vars->vertical_dir == 0)
 	{
-		if (vars->map[(vars->enemy_y / TILE_SIZE) + 1] \
-		[vars->enemy_x / TILE_SIZE] == '1')
-			vars->wall2 = 1;
+		if (vars->map[tile_y + 1][tile_x] == '1')
+			vars->vertical_dir = 1;
 		else
-		{
-			draw_tile(vars, vars->enemy_x, vars->enemy_y);
-			vars->enemy_y += 32;
-			draw_trans_img(vars, vars->img_enemy[vars->anim], vars->enemy_x, vars->enemy_y);
-		}
+			move_enemy(vars, 0, TILE_SIZE, vars->img_enemy[vars->anim]);
 	}
-	else if (vars->wall2 == 1)
+	else if (vars->vertical_dir == 1)
 	{
-		if (vars->map[(vars->enemy_y / TILE_SIZE) - 1] \
-		[vars->enemy_x / TILE_SIZE] == '1')
-			vars->wall2 = 0;
+		if (vars->map[tile_y - 1][tile_x] == '1')
+			vars->vertical_dir = 1;
 		else
-		{
-			draw_tile(vars, vars->enemy_x, vars->enemy_y);
-			vars->enemy_y -= 32;
-			draw_trans_img(vars, vars->img_enemy[vars->anim], vars->enemy_x, vars->enemy_y);
-		}
+			move_enemy(vars, 0, -TILE_SIZE, vars->img_enemy[vars->anim]);
 	}
 }
 
-void	moviment(t_vars *vars)
+void	move_enemy_horizontal(t_vars *vars)
 {
-	if (vars->wall == 0)
+	int tile_x;
+	int tile_y;
+
+	tile_x = vars->enemy_x / TILE_SIZE;
+	tile_y = vars->enemy_y / TILE_SIZE;
+	if (vars->horizontal_dir == 0)
 	{
-		if (vars->map[vars->enemy_y / TILE_SIZE][(vars->enemy_x / TILE_SIZE) + 1] == '1')
-			vars->wall = 1;
+		if (vars->map[tile_y][tile_x + 1] == '1')
+			vars->horizontal_dir = 1;
 		else
-		{
-			draw_tile(vars, vars->enemy_x, vars->enemy_y);
-			vars->enemy_x += 32;
-			draw_trans_img(vars, vars->img_enemy[vars->anim], vars->enemy_x, vars->enemy_y);
-		}
+			move_enemy(vars, TILE_SIZE, 0, vars->img_enemy[vars->anim]);
 	}
-	else if (vars->wall == 1)
+	else if (vars->horizontal_dir == 1)
 	{
-		if (vars->map[vars->enemy_y / TILE_SIZE][(vars->enemy_x / TILE_SIZE) - 1] == '1')
-			vars->wall = 0;
+		if (vars->map[tile_y][tile_x - 1] == '1')
+			vars->horizontal_dir = 1;
 		else
-		{
-			draw_tile(vars, vars->enemy_x, vars->enemy_y);
-			vars->enemy_x -= 32;
-			draw_trans_img(vars, vars->img_fenemy[vars->anim], vars->enemy_x, vars->enemy_y);
-		}
+			move_enemy(vars, -TILE_SIZE, 0, vars->img_enemy[vars->anim]);
 	}
-	if (vars->map[vars->enemy_y / TILE_SIZE][(vars->enemy_x / TILE_SIZE) - 1] == '1'\
-	&& vars->map[vars->enemy_y / TILE_SIZE][(vars->enemy_x / TILE_SIZE) + 1] == '1')
-		moviment2(vars);
+	if (vars->map[tile_y][tile_x - 1] == '1' && \
+	vars->map[tile_y][tile_x + 1] == '1')
+		move_enemy_vertical(vars);
 }

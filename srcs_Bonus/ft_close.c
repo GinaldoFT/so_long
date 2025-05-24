@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 08:08:50 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 15:19:48 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 16:16:40 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	check_fd(t_vars *vars, char *str)
 	vars->counter = 0;
 	vars->count = 0;
 	vars->anim = 0;
-	vars->wall = 0;
-	vars->wall2 = 0;
+	vars->horizontal_dir = 0;
+	vars->vertical_dir = 0;
 	vars->fd = open(str, O_RDONLY);
 	if (vars->fd == -1)
 	{

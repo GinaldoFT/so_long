@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 15:33:31 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 16:29:12 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct s_vars
 	int		count;
 	int		anim;
 	int		counter;
-	int		wall;
-	int		wall2;
+	int		horizontal_dir;
+	int		vertical_dir;
 	int		enemy;
 }	t_vars;
 
@@ -107,7 +107,7 @@ int				path(t_vars *vars, t_rules *rules);
 int				animation_coin(t_vars *vars);
 void			load_imgs_bonus(t_vars *vars);
 void			print_move_count(t_vars *vars);
-void			moviment(t_vars *vars);
+void			move_enemy_horizontal(t_vars *vars);
 void			draw_tile(t_vars *vars, int x, int y);
 void			check_fd(t_vars *vars, char *str);
 void			file_ber(char *file, int fd);

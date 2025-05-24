@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:02:26 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 15:40:51 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 16:29:20 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	draw_animation_utils(t_vars *vars, int i)
 	if (vars->enemy == 1)
 	{
 		draw_trans_img(vars, vars->img_floor, vars->enemy_x, vars->enemy_y);
-		if (vars->wall == 1)
+		if (vars->horizontal_dir == 1)
 			draw_trans_img(vars, vars->img_fenemy[i], \
 			vars->enemy_x, vars->enemy_y);
 		else
@@ -113,7 +113,7 @@ int	animation_coin(t_vars *vars)
 		draw_animation(vars);
 	}
 	if (vars->count == 15000 && vars->anim == 3 && vars->enemy == 1)
-		moviment(vars);
+		move_enemy_horizontal(vars);
 	if (vars->x == vars->enemy_x && vars->y == vars->enemy_y)
 	{
 		ft_printf("GAME OVER!");
