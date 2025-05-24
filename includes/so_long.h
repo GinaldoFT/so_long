@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/23 11:51:38 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 09:13:14 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@
 # define COIN2 "sprites/Coin_2.xpm"
 # define COIN3 "sprites/Coin_3.xpm"
 # define COIN4 "sprites/Coin_4.xpm"
+# define PLAYER2 "sprites/player2.xpm"
+# define PLAYER3 "sprites/player3.xpm"
+# define PLAYER4 "sprites/player4.xpm"
+# define ENEMY "sprites/enemy.xpm"
+# define ENEMY2 "sprites/enemy_2.xpm"
+# define ENEMY3 "sprites/enemy_3.xpm"
+# define ENEMY4 "sprites/enemy_4.xpm"
+# define FENEMY "sprites/fenemy.xpm"
+# define FENEMY2 "sprites/fenemy_2.xpm"
+# define FENEMY3 "sprites/fenemy_3.xpm"
+# define FENEMY4 "sprites/fenemy_4.xpm"
 
 typedef struct s_vars
 {
@@ -98,5 +109,6 @@ void			load_imgs_bonus(t_vars *vars);
 void			print_move_count(t_vars *vars);
 void			moviment(t_vars *vars);
 void			draw_tile(t_vars *vars, int x, int y);
+void			check_fd(t_vars *vars, char *str);
 
 #endif

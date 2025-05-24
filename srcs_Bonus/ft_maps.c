@@ -6,16 +6,40 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/23 10:56:05 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 11:32:04 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	draw_map_utils(t_vars *vars, int y, int x)
+{
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
+	if (vars->map[y][x] == 'P')
+	{
+		vars->x = x * TILE_SIZE;
+		vars->y = y * TILE_SIZE;
+	}
+	else if (vars->map[y][x] == '1')
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, x * TILE_SIZE, y * TILE_SIZE);
+	else if (vars->map[y][x] == 'C')
+		draw_trans_img(vars, vars->img_coin[0], x * TILE_SIZE, y * TILE_SIZE);
+	else if (vars->map[y][x] == 'E')
+	{
+		draw_trans_img(vars, vars->img_exit[0], x * TILE_SIZE, y * TILE_SIZE);
+	}
+	else if (vars->map[y][x] == 'M')
+	{
+		vars->enemy_x = x * TILE_SIZE;
+		vars->enemy_y = y * TILE_SIZE;
+		vars->map[y][x] = '0';
+	}
+}
+
 void	draw_map(t_vars *vars)
 {
-	int		y;
-	int		x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (vars->map[y])
@@ -25,26 +49,7 @@ void	draw_map(t_vars *vars)
 		{
 			if (vars->map[y][x] == '\n')
 				break ;
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
-			if (vars->map[y][x] == 'P')
-			{
-				vars->x = x * TILE_SIZE;
-				vars->y = y * TILE_SIZE;
-			}
-			else if (vars->map[y][x] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, x * TILE_SIZE, y * TILE_SIZE);
-			else if (vars->map[y][x] == 'C')
-				draw_trans_img(vars, vars->img_coin[0], x * TILE_SIZE, y * TILE_SIZE);
-			else if (vars->map[y][x] == 'E')
-			{
-				draw_trans_img(vars, vars->img_exit[0], x * TILE_SIZE, y * TILE_SIZE);
-			}
-			else if (vars->map[y][x] == 'M')
-			{
-				vars->enemy_x = x * TILE_SIZE;
-				vars->enemy_y = y * TILE_SIZE;
-				vars->map[y][x] = '0';
-			}
+			draw_map_utils(vars, y, x);
 			x++;
 		}
 		y++;
@@ -60,11 +65,22 @@ void	ft_error(t_vars *vars)
 	if (error == 0)
 		return ;
 	if (error == 2)
-		ft_putstr_fd("O mapa deve ser fechado por paredes!", 2);
+		ft_putstr_fd("Error\nThe map must be enclosed by walls.", 2);
 	if (error == 3)
-		ft_putstr_fd("As linhas deve ter o mesmo tamanho!", 2);
+		ft_putstr_fd("Error\nAll lines must have the same length.", 2);
 	free_all(vars->map, vars->map_y / 32);
 	exit(0);
+}
+
+void	create_maps_utils(t_vars *vars, char *maps)
+{
+	if (maps)
+	{
+		vars->clone_map = ft_split(maps, '!');
+		vars->map = ft_split(maps, '!');
+		free(maps);
+	}
+	ft_error(vars);
 }
 
 void	create_map(int fd, t_vars *vars)
@@ -92,40 +108,7 @@ void	create_map(int fd, t_vars *vars)
 		maps = ft_strjoin(tmp, "!");
 		free(tmp);
 	}
-	if (maps)
-	{
-		vars->clone_map = ft_split(maps, '!');
-		vars->map = ft_split(maps, '!');
-		free(maps);
-	}
-	ft_error(vars);
-}
-
-void	load_imgs(t_vars *vars)
-{
-	int	h;
-	int	w;
-
-	vars->img_p[0] = mlx_xpm_file_to_image(vars->mlx, PLAYER, &w, &h);
-	if (!vars->img_p[0])
-		ft_printf("Erro ao Carregar Player!");
-	vars->img_floor = mlx_xpm_file_to_image(vars->mlx, FLOOR, &w, &h);
-	if (!vars->img_floor)
-		ft_printf("Erro ao Carregar floor!");
-	vars->img_wall = mlx_xpm_file_to_image(vars->mlx, WALL, &w, &h);
-	if (!vars->img_wall)
-		ft_printf("Erro ao Carregar wall!");
-	vars->img_exit[0] = mlx_xpm_file_to_image(vars->mlx, EXIT, &w, &h);
-	if (!vars->img_exit[0])
-		ft_printf("Erro ao Carregar exit!");
-	vars->img_coin[0] = mlx_xpm_file_to_image(vars->mlx, COIN, &w, &h);
-	if (!vars->img_coin[0])
-		ft_printf("Erro ao Carregar coin!");
-	vars->img_exit[1] = mlx_xpm_file_to_image(vars->mlx, EXITT, &w, &h);
-	if (!vars->img_exit[1])
-		ft_printf("Erro ao Carregar exit2!");
-	draw_map(vars);
-	load_imgs_bonus(vars);
+	create_maps_utils(vars, maps);
 }
 
 void	ft_windown_size(t_vars *vars)
@@ -143,7 +126,7 @@ void	ft_windown_size(t_vars *vars)
 	vars->map_y = i * TILE_SIZE;
 	if (vars->map_x > 1920 || vars->map_y > 1024)
 	{
-		ft_putstr_fd("Mapa Muito Grande", 2);
+		ft_putstr_fd("Error\nMap is too large.", 2);
 		free_all(vars->map, vars->map_y / 32);
 		exit(0);
 	}

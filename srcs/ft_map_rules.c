@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 16:11:08 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 11:49:51 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,35 @@ int	first_and_last(t_vars *vars, t_rules *rules)
 	return (0);
 }
 
+int	line_letter_utils(t_vars *vars, t_rules *rules)
+{
+	if (vars->map[rules->lines][rules->index] == 'P')
+	{
+		vars->x = rules->index * TILE_SIZE;
+		vars->y = rules->lines * TILE_SIZE;
+		rules->player++;
+	}
+	else if (vars->map[rules->lines][rules->index] == 'E')
+	{
+		vars->ey = rules->lines * TILE_SIZE;
+		vars->ex = rules->index * TILE_SIZE;
+		rules->exit++;
+	}
+	else if (vars->map[rules->lines][rules->index] == 'C')
+		vars->coins++;
+	else if (vars->map[rules->lines][rules->index] != '1' && \
+	vars->map[rules->lines][rules->index] != '0')
+	{
+		ft_printf("caractarer invalido %c", vars->map[rules->lines][rules->index]);
+		return (1);
+	}
+	return (0);
+}
+
 int	line_letter(t_vars *vars, t_rules *rules)
 {
 	rules->player = 0;
+	rules->enemy = 0;
 	vars->coins = 0;
 	rules->exit = 0;
 	rules->lines = 1;
@@ -58,30 +84,8 @@ int	line_letter(t_vars *vars, t_rules *rules)
 		rules->index = 1;
 		while (rules->index < rules->len)
 		{
-			if (vars->map[rules->lines][rules->index] != 'P' && \
-			vars->map[rules->lines][rules->index] != '1' && \
-			vars->map[rules->lines][rules->index] != 'E' && \
-			vars->map[rules->lines][rules->index] != 'C' && \
-			vars->map[rules->lines][rules->index] != '0' && \
-			vars->map[rules->lines][rules->index] != '\n')
-			{
-				ft_printf("Caracterer invalido: %c", vars->map[rules->lines][rules->index]);
+			if (line_letter_utils(vars, rules) == 1)
 				return (1);
-			}
-			if (vars->map[rules->lines][rules->index] == 'P')
-			{
-				vars->x = rules->index * TILE_SIZE;
-				vars->y = rules->lines * TILE_SIZE;
-				rules->player++;
-			}
-			if (vars->map[rules->lines][rules->index] == 'E')
-			{
-				vars->ey = rules->lines * TILE_SIZE;
-				vars->ex = rules->index * TILE_SIZE;
-				rules->exit++;
-			}
-			if (vars->map[rules->lines][rules->index] == 'C')
-				vars->coins++;
 			rules->index++;
 		}
 		rules->lines++;
@@ -91,25 +95,20 @@ int	line_letter(t_vars *vars, t_rules *rules)
 
 int	number_carac(t_vars *vars, t_rules *rules)
 {
+	rules->j = 1;
 	if (rules->player != 1)
 	{
-		if (rules->player > 1)
-			ft_printf("Maximo de player e 1");
-		else if (rules->player < 1)
-			ft_printf("Minimo de player e 1");
+		ft_putstr_fd("Error\nThere must be at least one player.", 2);
 		return (1);
 	}
 	if (rules->exit != 1)
 	{
-		if (rules->exit > 1)
-			ft_printf("Maximo de portas e 1");
-		else if (rules->exit < 1)
-			ft_printf("Minimo de portas e 1");
+		ft_putstr_fd("Error\nOnly one door is allowed.", 2);
 		return (1);
 	}
 	if (vars->coins < 1)
 	{
-		ft_printf("Minimo de coins e 1");
+		ft_putstr_fd("Error\nThere must be at least one coin.", 2);
 		return (1);
 	}
 	return (0);
@@ -128,7 +127,6 @@ int	rule_map(t_vars *vars)
 		return (2);
 	if (line_letter(vars, &rules) == 1 || number_carac(vars, &rules) == 1)
 		return (1);
-	rules.j = 1;
 	rules.l = 1;
 	rules.i -= 2;
 	while (rules.last > rules.l)

@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:50:58 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/23 14:51:03 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 11:36:44 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	moviment2(t_vars *vars)
 {
 	if (vars->wall2 == 0)
 	{
-		if (vars->map[(vars->enemy_y / TILE_SIZE) + 1][vars->enemy_x / TILE_SIZE] == '1')
+		if (vars->map[(vars->enemy_y / TILE_SIZE) + 1] \
+		[vars->enemy_x / TILE_SIZE] == '1')
 			vars->wall2 = 1;
 		else
 		{
@@ -27,7 +28,8 @@ void	moviment2(t_vars *vars)
 	}
 	else if (vars->wall2 == 1)
 	{
-		if (vars->map[(vars->enemy_y / TILE_SIZE) - 1][vars->enemy_x / TILE_SIZE] == '1')
+		if (vars->map[(vars->enemy_y / TILE_SIZE) - 1] \
+		[vars->enemy_x / TILE_SIZE] == '1')
 			vars->wall2 = 0;
 		else
 		{

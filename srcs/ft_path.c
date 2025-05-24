@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:39:30 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/23 14:39:34 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 11:48:23 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	path(t_vars *vars, t_rules *rules)
 
 	x = vars->x / TILE_SIZE;
 	y = vars->y / TILE_SIZE;
-	flood_fill(x,  y, vars);
+	flood_fill(x, y, vars);
 	if (clone_map(vars, rules) == 1)
 	{
 		ft_putstr_fd("\nError\nSem caminho valido", 2);
