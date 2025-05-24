@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 15:03:09 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:51:37 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	draw_map_utils(t_vars *vars, int y, int x)
 {
-	draw_trans_img(vars, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
+	mlx_put_image_to_window(vars->mlx, vars->win, \
+	vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
 	if (vars->map[y][x] == 'P')
 	{
 		vars->x = x * TILE_SIZE;
 		vars->y = y * TILE_SIZE;
 	}
 	else if (vars->map[y][x] == '1')
-		draw_trans_img(vars, vars->img_wall, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(vars->mlx, vars->win, \
+	vars->img_wall, x * TILE_SIZE, y * TILE_SIZE);
 	else if (vars->map[y][x] == 'C')
 		draw_trans_img(vars, vars->img_coin[0], x * TILE_SIZE, y * TILE_SIZE);
 	else if (vars->map[y][x] == 'E')
