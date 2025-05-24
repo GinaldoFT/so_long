@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:02:26 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 14:42:53 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:40:51 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ void	draw_animation_utils(t_vars *vars, int i)
 	{
 		draw_trans_img(vars, vars->img_floor, vars->enemy_x, vars->enemy_y);
 		if (vars->wall == 1)
-			draw_trans_img(vars, vars->img_fenemy[i], vars->enemy_x, vars->enemy_y);
+			draw_trans_img(vars, vars->img_fenemy[i], \
+			vars->enemy_x, vars->enemy_y);
 		else
-			draw_trans_img(vars, vars->img_enemy[i], vars->enemy_x, vars->enemy_y);
+			draw_trans_img(vars, vars->img_enemy[i], \
+			vars->enemy_x, vars->enemy_y);
 	}
 }
 

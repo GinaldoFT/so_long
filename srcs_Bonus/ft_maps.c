@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 14:35:06 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:29:33 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,6 @@ void	draw_map(t_vars *vars)
 	}
 }
 
-void	ft_error(t_vars *vars)
-{
-	int	error;
-
-	ft_windown_size(vars);
-	error = rule_map(vars);
-	if (error == 0)
-		return ;
-	if (error == 2)
-		ft_putstr_fd("Error\nThe map must be enclosed by walls.", 2);
-	if (error == 3)
-		ft_putstr_fd("Error\nMap is not rectangular.", 2);
-	free_all(vars->map, vars->map_y / 32);
-	free_all(vars->clone_map, vars->map_y / 32);
-	exit(0);
-}
-
 void	create_maps_utils(t_vars *vars, char *maps)
 {
 	if (maps)
@@ -91,6 +74,7 @@ void	create_map(int fd, t_vars *vars)
 	char	*tmp;
 
 	maps = NULL;
+	vars->moves = 0;
 	while (1)
 	{
 		buffer = get_next_line(fd);
@@ -110,25 +94,4 @@ void	create_map(int fd, t_vars *vars)
 		free(tmp);
 	}
 	create_maps_utils(vars, maps);
-}
-
-void	ft_windown_size(t_vars *vars)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (vars->map[i])
-		i++;
-	while (vars->map[0][j])
-		j++;
-	vars->map_x = (j * TILE_SIZE) - 32;
-	vars->map_y = i * TILE_SIZE;
-	if (vars->map_x > 1920 || vars->map_y > 1024)
-	{
-		ft_putstr_fd("Error\nMap is too large.", 2);
-		free_all(vars->map, vars->map_y / 32);
-		exit(0);
-	}
 }

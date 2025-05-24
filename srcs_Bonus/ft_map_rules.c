@@ -6,29 +6,11 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 14:41:34 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:30:19 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	len_line(t_vars *vars, t_rules *rules)
-{
-	int	i;
-
-	i = 1;
-	rules->len = ft_strlen(vars->map[0]);
-	while (i < rules->last)
-	{
-		if (ft_strlen(vars->map[i]) != rules->len)
-			return (1);
-		i++;
-	}
-	rules->len -= 1;
-	if (ft_strlen(vars->map[rules->last]) != rules->len)
-		return (1);
-	return (0);
-}
 
 int	first_and_last(t_vars *vars, t_rules *rules)
 {
@@ -91,32 +73,6 @@ int	line_letter(t_vars *vars, t_rules *rules)
 			rules->index++;
 		}
 		rules->lines++;
-	}
-	return (0);
-}
-
-int	number_carac(t_vars *vars, t_rules *rules)
-{
-	rules->j = 1;
-	if (rules->player != 1)
-	{
-		ft_putstr_fd("Error\nThere must be at least one player.", 2);
-		return (1);
-	}
-	if (rules->exit != 1)
-	{
-		ft_putstr_fd("Error\nOnly one door is allowed.", 2);
-		return (1);
-	}
-	if (vars->coins < 1)
-	{
-		ft_putstr_fd("Error\nThere must be at least one coin.", 2);
-		return (1);
-	}
-	if (vars->enemy > 1)
-	{
-		ft_putstr_fd("Error\nOnly one enemy is allowed.", 2);
-		return (1);
 	}
 	return (0);
 }

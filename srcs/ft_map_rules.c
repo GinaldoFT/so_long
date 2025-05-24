@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 15:04:47 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:39:07 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	first_and_last(t_vars *vars, t_rules *rules)
 	}
 	while (vars->map[rules->last][rules->end])
 	{
-		if (vars->map[rules->last][rules->end] != '1' && vars->map[rules->last][rules->end] != '\n')
+		if (vars->map[rules->last][rules->end] != '1' && \
+		vars->map[rules->last][rules->end] != '\n')
 			return (1);
 		rules->end++;
 	}
@@ -48,7 +49,8 @@ int	line_letter_utils(t_vars *vars, t_rules *rules)
 	else if (vars->map[rules->lines][rules->index] != '1' && \
 	vars->map[rules->lines][rules->index] != '0')
 	{
-		ft_printf("Error\ninvalid character: %c", vars->map[rules->lines][rules->index]);
+		ft_printf("Error\ninvalid character: %c", \
+		vars->map[rules->lines][rules->index]);
 		return (1);
 	}
 	return (0);

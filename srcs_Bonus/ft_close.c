@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 08:08:50 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 14:57:49 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:19:48 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	check_fd(t_vars *vars, char *str)
 	int		i;
 	char	buffer[1];
 
-	vars->moves = 0;
 	vars->coinsc = 0;
 	vars->counter = 0;
 	vars->count = 0;

@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 15:05:22 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:33:31 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ void			draw_tile(t_vars *vars, int x, int y);
 void			check_fd(t_vars *vars, char *str);
 void			file_ber(char *file, int fd);
 int				len_line(t_vars *vars, t_rules *rules);
+int				number_carac(t_vars *vars, t_rules *rules);
+void			ft_error(t_vars *vars);
 
 #endif
