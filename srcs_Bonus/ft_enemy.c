@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:50:58 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 16:27:52 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 17:03:08 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	move_enemy(t_vars *vars, int dx, int dy, void *img)
 
 void	move_enemy_vertical(t_vars *vars)
 {
-	int tile_x;
-	int tile_y;
+	int	tile_x;
+	int	tile_y;
 
 	tile_x = vars->enemy_x / TILE_SIZE;
 	tile_y = vars->enemy_y / TILE_SIZE;
@@ -37,7 +37,7 @@ void	move_enemy_vertical(t_vars *vars)
 	else if (vars->vertical_dir == 1)
 	{
 		if (vars->map[tile_y - 1][tile_x] == '1')
-			vars->vertical_dir = 1;
+			vars->vertical_dir = 0;
 		else
 			move_enemy(vars, 0, -TILE_SIZE, vars->img_enemy[vars->anim]);
 	}
@@ -45,8 +45,8 @@ void	move_enemy_vertical(t_vars *vars)
 
 void	move_enemy_horizontal(t_vars *vars)
 {
-	int tile_x;
-	int tile_y;
+	int	tile_x;
+	int	tile_y;
 
 	tile_x = vars->enemy_x / TILE_SIZE;
 	tile_y = vars->enemy_y / TILE_SIZE;
@@ -60,9 +60,9 @@ void	move_enemy_horizontal(t_vars *vars)
 	else if (vars->horizontal_dir == 1)
 	{
 		if (vars->map[tile_y][tile_x - 1] == '1')
-			vars->horizontal_dir = 1;
+			vars->horizontal_dir = 0;
 		else
-			move_enemy(vars, -TILE_SIZE, 0, vars->img_enemy[vars->anim]);
+			move_enemy(vars, -TILE_SIZE, 0, vars->img_fenemy[vars->anim]);
 	}
 	if (vars->map[tile_y][tile_x - 1] == '1' && \
 	vars->map[tile_y][tile_x + 1] == '1')
