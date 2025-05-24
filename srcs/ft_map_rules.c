@@ -6,29 +6,11 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 11:49:51 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:04:47 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	len_line(t_vars *vars, t_rules *rules)
-{
-	int	i;
-
-	i = 1;
-	rules->len = ft_strlen(vars->map[0]);
-	while (i < rules->last)
-	{
-		if (ft_strlen(vars->map[i]) != rules->len)
-			return (1);
-		i++;
-	}
-	rules->len -= 1;
-	if (ft_strlen(vars->map[rules->last]) != rules->len)
-		return (1);
-	return (0);
-}
 
 int	first_and_last(t_vars *vars, t_rules *rules)
 {
@@ -66,7 +48,7 @@ int	line_letter_utils(t_vars *vars, t_rules *rules)
 	else if (vars->map[rules->lines][rules->index] != '1' && \
 	vars->map[rules->lines][rules->index] != '0')
 	{
-		ft_printf("caractarer invalido %c", vars->map[rules->lines][rules->index]);
+		ft_printf("Error\ninvalid character: %c", vars->map[rules->lines][rules->index]);
 		return (1);
 	}
 	return (0);
@@ -75,7 +57,6 @@ int	line_letter_utils(t_vars *vars, t_rules *rules)
 int	line_letter(t_vars *vars, t_rules *rules)
 {
 	rules->player = 0;
-	rules->enemy = 0;
 	vars->coins = 0;
 	rules->exit = 0;
 	rules->lines = 1;
@@ -89,27 +70,6 @@ int	line_letter(t_vars *vars, t_rules *rules)
 			rules->index++;
 		}
 		rules->lines++;
-	}
-	return (0);
-}
-
-int	number_carac(t_vars *vars, t_rules *rules)
-{
-	rules->j = 1;
-	if (rules->player != 1)
-	{
-		ft_putstr_fd("Error\nThere must be at least one player.", 2);
-		return (1);
-	}
-	if (rules->exit != 1)
-	{
-		ft_putstr_fd("Error\nOnly one door is allowed.", 2);
-		return (1);
-	}
-	if (vars->coins < 1)
-	{
-		ft_putstr_fd("Error\nThere must be at least one coin.", 2);
-		return (1);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:02:26 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 11:53:11 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 14:42:53 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,14 @@ void	draw_animation_utils(t_vars *vars, int i)
 {
 	draw_trans_img(vars, vars->img_floor, vars->x, vars->y);
 	draw_trans_img(vars, vars->img_p[i], vars->x, vars->y);
-	draw_trans_img(vars, vars->img_floor, vars->enemy_x, vars->enemy_y);
-	if (vars->wall == 1)
-		draw_trans_img(vars, vars->img_fenemy[i], vars->enemy_x, vars->enemy_y);
-	else
-		draw_trans_img(vars, vars->img_enemy[i], vars->enemy_x, vars->enemy_y);
+	if (vars->enemy == 1)
+	{
+		draw_trans_img(vars, vars->img_floor, vars->enemy_x, vars->enemy_y);
+		if (vars->wall == 1)
+			draw_trans_img(vars, vars->img_fenemy[i], vars->enemy_x, vars->enemy_y);
+		else
+			draw_trans_img(vars, vars->img_enemy[i], vars->enemy_x, vars->enemy_y);
+	}
 }
 
 void	draw_animation(t_vars *vars)
@@ -107,7 +110,7 @@ int	animation_coin(t_vars *vars)
 			vars->anim++;
 		draw_animation(vars);
 	}
-	if (vars->count == 15000 && vars->anim == 3)
+	if (vars->count == 15000 && vars->anim == 3 && vars->enemy == 1)
 		moviment(vars);
 	if (vars->x == vars->enemy_x && vars->y == vars->enemy_y)
 	{

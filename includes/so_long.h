@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:31:01 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 09:13:14 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:05:22 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_vars
 	int		counter;
 	int		wall;
 	int		wall2;
+	int		enemy;
 }	t_vars;
 
 typedef struct s_rules
@@ -89,7 +90,6 @@ typedef struct s_rules
 	int		player;
 	int		exit;
 	int		lines;
-	int		enemy;
 	size_t	index;
 }	t_rules;
 
@@ -110,5 +110,7 @@ void			print_move_count(t_vars *vars);
 void			moviment(t_vars *vars);
 void			draw_tile(t_vars *vars, int x, int y);
 void			check_fd(t_vars *vars, char *str);
+void			file_ber(char *file, int fd);
+int				len_line(t_vars *vars, t_rules *rules);
 
 #endif

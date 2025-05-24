@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:10 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 11:33:53 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 14:41:34 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ int	line_letter_utils(t_vars *vars, t_rules *rules)
 		rules->exit++;
 	}
 	else if (vars->map[rules->lines][rules->index] == 'M')
-		rules->enemy++;
+		vars->enemy++;
 	else if (vars->map[rules->lines][rules->index] == 'C')
 		vars->coins++;
 	else if (vars->map[rules->lines][rules->index] != '1' && \
 	vars->map[rules->lines][rules->index] != '0')
 	{
-		ft_printf("caractarer invalido %c", vars->map[rules->lines][rules->index]);
+		ft_printf("Error\ninvalid character: %c", vars->map[rules->lines][rules->index]);
 		return (1);
 	}
 	return (0);
@@ -77,7 +77,7 @@ int	line_letter_utils(t_vars *vars, t_rules *rules)
 int	line_letter(t_vars *vars, t_rules *rules)
 {
 	rules->player = 0;
-	rules->enemy = 0;
+	vars->enemy = 0;
 	vars->coins = 0;
 	rules->exit = 0;
 	rules->lines = 1;
@@ -113,7 +113,7 @@ int	number_carac(t_vars *vars, t_rules *rules)
 		ft_putstr_fd("Error\nThere must be at least one coin.", 2);
 		return (1);
 	}
-	if (rules->enemy > 1)
+	if (vars->enemy > 1)
 	{
 		ft_putstr_fd("Error\nOnly one enemy is allowed.", 2);
 		return (1);

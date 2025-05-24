@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 08:54:42 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 14:39:07 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	file_ber(char *file, int fd)
 	if (ft_strncmp(ext, ".ber", len) != 0)
 	{
 		close(fd);
+		ft_putstr_fd("Error\nInvalid map file extension.", 2);
 		exit(0);
 	}
 }
@@ -50,13 +51,12 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 	{
 		if (ac > 2)
-			ft_putstr_fd("Error\nMuitos Argumentos", 2);
+			ft_putstr_fd("Error\nToo many arguments.", 2);
 		else if (ac < 2)
-			ft_putstr_fd("Error\nMapa Nescessario", 2);
+			ft_putstr_fd("Error\nMap is necessary.", 2);
 		return (1);
 	}
 	check_fd(&vars, av[1]);
-	file_ber(av[1], vars.fd);
 	create_map(vars.fd, &vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.map_x, vars.map_y, "so_long");

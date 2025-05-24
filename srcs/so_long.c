@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:35:05 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/21 21:52:59 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 14:36:13 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	file_ber(char *file, int fd)
 	if (ft_strncmp(ext, ".ber", len) != 0)
 	{
 		close(fd);
+		ft_putstr_fd("Error\nInvalid map file extension.", 2);
 		exit(0);
 	}
 }
@@ -73,18 +74,19 @@ void	check_fd(t_vars *vars, char *str)
 	vars->fd = open(str, O_RDONLY);
 	if (vars->fd == -1)
 	{
-		ft_printf("Arquivo nao existe");
+		ft_putstr_fd("Error\nMap file could not be opened.", 2);
 		exit(0);
 	}
 	i = read(vars->fd, buffer, 1);
 	if (i == 0)
 	{
-		ft_printf("Empty File");
 		close(vars->fd);
+		ft_putstr_fd("Error\nEmpty File.", 2);
 		exit(0);
 	}
 	close(vars->fd);
 	vars->fd = open(str, O_RDONLY);
+	file_ber(str, vars->fd);
 }
 
 int	main(int ac, char *av[])
@@ -94,13 +96,12 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 	{
 		if (ac > 2)
-			ft_putstr_fd("Error\nMuitos Argumentos", 2);
+			ft_putstr_fd("Error\nToo many arguments.", 2);
 		else if (ac < 2)
-			ft_putstr_fd("Error\nMapa Nescessario", 2);
+			ft_putstr_fd("Error\nMap is necessary.", 2);
 		return (1);
 	}
 	check_fd(&vars, av[1]);
-	file_ber(av[1], vars.fd);
 	create_map(vars.fd, &vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.map_x, vars.map_y, "so_long");

@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 11:32:04 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 14:35:06 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,9 @@ void	ft_error(t_vars *vars)
 	if (error == 2)
 		ft_putstr_fd("Error\nThe map must be enclosed by walls.", 2);
 	if (error == 3)
-		ft_putstr_fd("Error\nAll lines must have the same length.", 2);
+		ft_putstr_fd("Error\nMap is not rectangular.", 2);
 	free_all(vars->map, vars->map_y / 32);
+	free_all(vars->clone_map, vars->map_y / 32);
 	exit(0);
 }
 

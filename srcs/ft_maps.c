@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 08:54:20 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 11:49:10 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:03:09 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	draw_map_utils(t_vars *vars, int y, int x)
 {
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
+	draw_trans_img(vars, vars->img_floor, x * TILE_SIZE, y * TILE_SIZE);
 	if (vars->map[y][x] == 'P')
 	{
 		vars->x = x * TILE_SIZE;
 		vars->y = y * TILE_SIZE;
 	}
 	else if (vars->map[y][x] == '1')
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->img_wall, x * TILE_SIZE, y * TILE_SIZE);
+		draw_trans_img(vars, vars->img_wall, x * TILE_SIZE, y * TILE_SIZE);
 	else if (vars->map[y][x] == 'C')
 		draw_trans_img(vars, vars->img_coin[0], x * TILE_SIZE, y * TILE_SIZE);
 	else if (vars->map[y][x] == 'E')
@@ -48,22 +48,6 @@ void	draw_map(t_vars *vars)
 		}
 		y++;
 	}
-}
-
-void	ft_error(t_vars *vars)
-{
-	int	error;
-
-	ft_windown_size(vars);
-	error = rule_map(vars);
-	if (error == 0)
-		return ;
-	if (error == 2)
-		ft_putstr_fd("O mapa deve ser fechado por paredes!", 2);
-	if (error == 3)
-		ft_putstr_fd("As linhas deve ter o mesmo tamanho!", 2);
-	free_all(vars->map, vars->map_y / 32);
-	exit(0);
 }
 
 void	create_maps_utils(t_vars *vars, char *maps)
@@ -112,42 +96,21 @@ void	load_imgs(t_vars *vars)
 
 	vars->img_p[0] = mlx_xpm_file_to_image(vars->mlx, PLAYER, &w, &h);
 	if (!vars->img_p[0])
-		ft_printf("Erro ao Carregar Player!");
+		ft_putstr_fd("Error\nFailed to load player!", 2);
 	vars->img_floor = mlx_xpm_file_to_image(vars->mlx, FLOOR, &w, &h);
 	if (!vars->img_floor)
-		ft_printf("Erro ao Carregar floor!");
+		ft_putstr_fd("Error\nFailed to load floor", 2);
 	vars->img_wall = mlx_xpm_file_to_image(vars->mlx, WALL, &w, &h);
 	if (!vars->img_wall)
-		ft_printf("Erro ao Carregar wall!");
+		ft_putstr_fd("Error\nFailed to load wall!", 2);
 	vars->img_exit[0] = mlx_xpm_file_to_image(vars->mlx, EXIT, &w, &h);
 	if (!vars->img_exit[0])
-		ft_printf("Erro ao Carregar exit!");
+		ft_putstr_fd("Error\nFailed to load exit!", 2);
 	vars->img_coin[0] = mlx_xpm_file_to_image(vars->mlx, COIN, &w, &h);
 	if (!vars->img_coin[0])
-		ft_printf("Erro ao Carregar coin!");
+		ft_putstr_fd("Error\nFailed to load coin!", 2);
 	vars->img_exit[1] = mlx_xpm_file_to_image(vars->mlx, EXITT, &w, &h);
 	if (!vars->img_exit[1])
-		ft_printf("Erro ao Carregar exit2!");
+		ft_putstr_fd("Error\nFailed to load exit2!", 2);
 	draw_map(vars);
-}
-
-void	ft_windown_size(t_vars *vars)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (vars->map[i])
-		i++;
-	while (vars->map[0][j])
-		j++;
-	vars->map_x = (j * TILE_SIZE) - 32;
-	vars->map_y = i * TILE_SIZE;
-	if (vars->map_x > 1920 || vars->map_y > 1024)
-	{
-		ft_putstr_fd("Mapa Muito Grande", 2);
-		free_all(vars->map, vars->map_y / 32);
-		exit(0);
-	}
 }
