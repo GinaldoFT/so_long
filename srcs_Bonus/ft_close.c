@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 08:08:50 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 16:16:40 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/25 08:39:35 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,27 @@ int	ft_close(t_vars *vars, int n)
 	return (0);
 }
 
-void	check_fd(t_vars *vars, char *str)
+void	ft_init(t_vars *vars)
 {
-	int		i;
-	char	buffer[1];
-
+	vars->enemy = 0;
+	vars->x = 0;
+	vars->y = 0;
+	vars->enemy_x = 0;
+	vars->enemy_y = 0;
 	vars->coinsc = 0;
 	vars->counter = 0;
 	vars->count = 0;
 	vars->anim = 0;
 	vars->horizontal_dir = 0;
 	vars->vertical_dir = 0;
+}
+
+void	check_fd(t_vars *vars, char *str)
+{
+	int		i;
+	char	buffer[1];
+
+	ft_init(vars);
 	vars->fd = open(str, O_RDONLY);
 	if (vars->fd == -1)
 	{
