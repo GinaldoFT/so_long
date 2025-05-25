@@ -13,7 +13,7 @@ A project developed as part of the 42 School curriculum. It is a simple 2D game 
 **so_long** is a small 2D game where the player moves around a map, collects all collectibles (`C`), and exits through the portal (`E`). The map is read from a `.ber` file and displayed using custom sprites. The project follows Norminette and includes a bonus version with enhanced features.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/GinaldoFT/GinaldoFT/main/42Badges/so_long_badge.png" width="100" alt="so_long badge"/>
+  <img src="https://raw.githubusercontent.com/GinaldoFT/GinaldoFT/main/42Badges/so_longm.png" width="100" alt="so_long badge"/>
 </p>
 
 ---
