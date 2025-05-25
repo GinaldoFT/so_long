@@ -6,7 +6,7 @@
 /*   By: ginfranc <ginfranc@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:02:26 by ginfranc          #+#    #+#             */
-/*   Updated: 2025/05/24 16:29:20 by ginfranc         ###   ########.fr       */
+/*   Updated: 2025/05/25 14:17:37 by ginfranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	load_imgs_bonus(t_vars *vars)
 
 void	draw_animation_utils(t_vars *vars, int i)
 {
-	draw_trans_img(vars, vars->img_floor, vars->x, vars->y);
+	draw_tile(vars, vars->x, vars->y);
 	draw_trans_img(vars, vars->img_p[i], vars->x, vars->y);
 	if (vars->enemy == 1)
 	{
