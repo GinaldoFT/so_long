@@ -31,7 +31,7 @@ A project developed as part of the 42 School curriculum. It is a simple 2D game 
 ### 🔹 Bonus Version
 
 - Animated sprites (player, coin, enemy)
-- Enemy (`X`) that moves automatically
+- Enemy (`M`) that moves automatically
 - Step counter displayed in the game window
 - Game ends when player touches the enemy
 
