@@ -2,7 +2,7 @@ NAME = so_long
 NAME_BONUS = so_long_bonus
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 INCLUDES = -Iincludes -Ilibs/libft -Ilibs/ft_printf/include -Ilibs/mlx
 
@@ -18,10 +18,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 MLX = -L$(MLX_DIR) -lmlx -lXext -lX11
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = srcs/ft_draw.c srcs/ft_map_rules.c srcs/ft_maps.c srcs/ft_path.c srcs/ft_utils.c srcs/keyboard.c srcs/so_long.c
 OBJS = $(SRCS:.c=.o)
 
-BONUS_SRCS = $(wildcard $(BONUS_DIR)/*.c)
+BONUS_SRCS = srcs_Bonus/ft_map_rules.c srcs_Bonus/ft_maps.c srcs_Bonus/ft_draw.c srcs_Bonus/ft_path.c srcs_Bonus/ft_utils.c srcs_Bonus/so_long.c srcs_Bonus/keyboard.c srcs_Bonus/ft_animation.c srcs_Bonus/ft_enemy.c srcs_Bonus/ft_close.c
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 %.o: %.c
