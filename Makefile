@@ -16,7 +16,9 @@ MLX_DIR = $(LIB_DIR)/mlx
 
 LIBFT = $(LIBFT_DIR)/libft.a
 PRINTF = $(PRINTF_DIR)/libftprintf.a
-MLX = -L$(MLX_DIR) -lmlx -lXext -lX11
+MLX_LIB = $(MLX_DIR)/libmlx.a
+
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
 
 SRCS = srcs/ft_draw.c srcs/ft_map_rules.c srcs/ft_maps.c srcs/ft_path.c srcs/ft_utils.c srcs/keyboard.c srcs/so_long.c
 OBJS = $(SRCS:.c=.o)
@@ -29,11 +31,11 @@ BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBFT) $(PRINTF) $(MLX)
+$(NAME): $(LIBFT) $(PRINTF) $(MLX_LIB) $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_FLAGS)
 
-bonus: $(LIBFT) $(PRINTF) $(MLX) $(BONUS_OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME_BONUS) $(BONUS_OBJS) $(LIBFT) $(PRINTF) $(MLX)
+bonus: $(LIBFT) $(PRINTF) $(MLX_LIB) $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME_BONUS) $(BONUS_OBJS) $(LIBFT) $(PRINTF) $(MLX_FLAGS)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
@@ -41,7 +43,7 @@ $(LIBFT):
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
-$(MLX):
+$(MLX_LIB):
 	$(MAKE) -C $(MLX_DIR)
 
 clean:
@@ -59,3 +61,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus clean fclean re
+
